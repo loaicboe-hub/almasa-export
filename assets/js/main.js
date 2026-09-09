@@ -368,7 +368,7 @@ async function fetchLiveContent() {
               images: pImages,
               badge: existing ? existing.badge : 'Премиум экспорт',
               season: existing ? existing.season : (p.season_en || 'Сезонный урожай'),
-              origin: 'Египет (Фермы ALMASA)',
+              origin: existing ? existing.origin : 'Египет (Фермы «Аль-Маса»)',
               sizes: existing ? existing.sizes : (p.variety_en || 'Калиброванные сорта'),
               packaging: existing ? existing.packaging : (p.packaging_en || 'Экспортная упаковка'),
               temp: (p.category_id == 4 || p.category_id == 5) ? '-18°C или ниже' : '+2°C до +6°C',
@@ -1479,7 +1479,7 @@ function initInquiryForm() {
         `📝 *Spécifications & Notes:* ${notes || 'Aucune'}\n\n` +
         `_Envoyé via le portail officiel d'exportation ALMASA Développement._`;
     } else if (isRu) {
-      msg = `*НОВЫЙ ЗАПРОС НА ЭКСПОРТНУЮ КОТИРОВКУ (ALMASA DEVELOPMENT)*\n\n` +
+      msg = `*НОВЫЙ ЗАПРОС НА ЭКСПОРТНУЮ КОТИРОВКУ («АЛЬ-МАСА» ДЛЯ РАЗВИТИЯ)*\n\n` +
         `👤 *Контактное лицо:* ${contactName}\n` +
         `🏢 *Компания:* ${companyName}\n` +
         `📱 *Телефон:* ${phone}\n` +
@@ -1489,7 +1489,7 @@ function initInquiryForm() {
         `🚢 *Порт / Страна назначения:* ${destination}\n` +
         `📑 *Условия поставки (Incoterms):* ${incoterm}\n` +
         `📝 *Спецификации & Примечания:* ${notes || 'Нет'}\n\n` +
-        `_Отправлено через официальный портал экспорта ALMASA Development._`;
+        `_Отправлено через официальный портал экспорта компании «Аль-Маса» для развития._`;
     } else {
       msg = `*NEW EXPORT QUOTATION REQUEST (ALMASA DEVELOPMENT)*\n\n` +
         `👤 *Contact Name:* ${contactName}\n` +
