@@ -3651,13 +3651,13 @@ html, body {
     -webkit-box-orient: vertical;
   }
 
-  /* Arabic & English Prominent Mobile Logo (+20%) */
+  /* Arabic, English & French Prominent Mobile Logo */
   html[lang="ar"] .logo-img-wrapper,
   html[lang="en"] .logo-img-wrapper,
   html[lang="fr"] .logo-img-wrapper,
   html[dir="rtl"] .logo-img-wrapper {
-    width: 88px !important;
-    height: 88px !important;
+    width: 106px !important;
+    height: 106px !important;
   }
 
   html[lang="ar"] .brand-title,
@@ -4136,13 +4136,13 @@ html, body {
     -webkit-box-orient: vertical;
   }
 
-  /* Arabic & English Extra Small Mobile Logo (+20%) */
+  /* Arabic, English & French Extra Small Mobile Logo */
   html[lang="ar"] .logo-img-wrapper,
   html[lang="en"] .logo-img-wrapper,
   html[lang="fr"] .logo-img-wrapper,
   html[dir="rtl"] .logo-img-wrapper {
-    width: 76px !important;
-    height: 76px !important;
+    width: 92px !important;
+    height: 92px !important;
   }
 
   html[lang="ar"] .brand-title,
