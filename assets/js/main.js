@@ -393,6 +393,19 @@ async function fetchLiveContent() {
 /* ==========================================================================
    LANGUAGE & LOCALIZATION CONTROLLER (TRILINGUAL: AR, EN, FR)
    ========================================================================== */
+function closeMobileMenu() {
+  const navMenu = document.getElementById('navMenu');
+  const mobileToggle = document.getElementById('mobileMenuBtn');
+  if (navMenu) {
+    navMenu.classList.remove('open');
+  }
+  if (mobileToggle) {
+    mobileToggle.classList.remove('active');
+    mobileToggle.innerHTML = '☰';
+  }
+  document.body.style.overflow = '';
+}
+
 function initLanguage() {
   const langToggleBtn = document.getElementById('langToggleBtn');
   const langWrapper = document.getElementById('langDropdownWrapper');
@@ -425,14 +438,7 @@ function initLanguage() {
         applyLanguage(targetLang);
         langWrapper?.classList.remove('open');
         langToggleBtn?.setAttribute('aria-expanded', 'false');
-        // Close mobile drawer if open
-        const navMenu = document.getElementById('navMenu');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        if (navMenu && navMenu.classList.contains('open')) {
-          navMenu.classList.remove('open');
-          mobileMenuBtn?.classList.remove('active');
-          document.body.style.overflow = '';
-        }
+        closeMobileMenu();
       }
     });
   });
@@ -1211,18 +1217,14 @@ function initNavigation() {
   // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
     if (navMenu?.classList.contains('open') && !navMenu.contains(e.target) && !mobileToggle?.contains(e.target)) {
-      navMenu.classList.remove('open');
-      mobileToggle?.classList.remove('active');
-      if (mobileToggle) mobileToggle.innerHTML = '☰';
+      closeMobileMenu();
     }
   });
 
   // Close mobile menu on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navMenu?.classList.contains('open')) {
-      navMenu.classList.remove('open');
-      mobileToggle?.classList.remove('active');
-      if (mobileToggle) mobileToggle.innerHTML = '☰';
+      closeMobileMenu();
     }
   });
 
@@ -1257,9 +1259,7 @@ function initNavigation() {
         renderProducts();
       }
       productsDropdownWrapper?.classList.remove('open');
-      navMenu?.classList.remove('open');
-      mobileToggle?.classList.remove('active');
-      if (mobileToggle) mobileToggle.innerHTML = '☰';
+      closeMobileMenu();
       
       const productsSec = document.getElementById('products');
       if (productsSec) {
@@ -1271,9 +1271,7 @@ function initNavigation() {
   // Close mobile menu on regular link click (excluding dropdown trigger)
   document.querySelectorAll('.nav-menu > a.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-      navMenu?.classList.remove('open');
-      mobileToggle?.classList.remove('active');
-      if (mobileToggle) mobileToggle.innerHTML = '☰';
+      closeMobileMenu();
     });
   });
 }
