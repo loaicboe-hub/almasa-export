@@ -3651,6 +3651,21 @@ html, body {
     -webkit-box-orient: vertical;
   }
 
+  /* Arabic & English Prominent Mobile Logo (+20%) */
+  html[lang="ar"] .logo-img-wrapper,
+  html[lang="en"] .logo-img-wrapper,
+  html[lang="fr"] .logo-img-wrapper,
+  html[dir="rtl"] .logo-img-wrapper {
+    width: 88px !important;
+    height: 88px !important;
+  }
+
+  html[lang="ar"] .brand-title,
+  html[lang="en"] .brand-title,
+  html[lang="fr"] .brand-title {
+    font-size: clamp(0.85rem, 3.4vw, 1.05rem) !important;
+  }
+
   .header-actions {
     gap: 0.4rem;
     flex-shrink: 0 !important;
@@ -4119,6 +4134,21 @@ html, body {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+  }
+
+  /* Arabic & English Extra Small Mobile Logo (+20%) */
+  html[lang="ar"] .logo-img-wrapper,
+  html[lang="en"] .logo-img-wrapper,
+  html[lang="fr"] .logo-img-wrapper,
+  html[dir="rtl"] .logo-img-wrapper {
+    width: 76px !important;
+    height: 76px !important;
+  }
+
+  html[lang="ar"] .brand-title,
+  html[lang="en"] .brand-title,
+  html[lang="fr"] .brand-title {
+    font-size: clamp(0.78rem, 3.5vw, 0.95rem) !important;
   }
 
   .header-actions {
