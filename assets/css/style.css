@@ -3263,8 +3263,8 @@ html, body {
   }
 
   .logo-img-wrapper {
-    width: 112px !important;
-    height: 112px !important;
+    width: 134px !important;
+    height: 134px !important;
   }
 
   .brand-title {
@@ -3526,7 +3526,7 @@ html, body {
 /* Mobile Screens (<= 768px) */
 @media (max-width: 768px) {
   :root {
-    --header-height: 86px;
+    --header-height: 98px;
   }
 
   .container {
@@ -3547,8 +3547,8 @@ html, body {
   }
 
   .logo-img-wrapper {
-    width: 98px !important;
-    height: 98px !important;
+    width: 118px !important;
+    height: 118px !important;
     flex-shrink: 0;
   }
 
@@ -3998,7 +3998,7 @@ html, body {
 /* Extra Small Mobile (< 480px) */
 @media (max-width: 480px) {
   :root {
-    --header-height: 88px;
+    --header-height: 94px;
   }
 
   .header-container {
@@ -4013,8 +4013,8 @@ html, body {
   }
 
   .logo-img-wrapper {
-    width: 88px !important;
-    height: 88px !important;
+    width: 106px !important;
+    height: 106px !important;
     flex-shrink: 0;
   }
 
