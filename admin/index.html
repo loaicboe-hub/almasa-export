@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="docTitle">لوحة الإدارة والتحكم | شركة الماسة للتطوير والتصدير الزراعي</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="admin.css?v=2.7">
+  <link rel="icon" type="image/jpeg" href="/assets/images/logo.jpg">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SIDEBAR NAVIGATION
+       ========================================================================== -->
+  <aside class="adm-sidebar">
+    <div class="adm-brand">
+      <div class="adm-logo-wrapper">
+        <img src="/assets/images/logo_diamond.png" alt="ALMASA Diamond Emblem">
+      </div>
+      <div class="adm-brand-text">
+        <h2 id="txtBrandTitle" data-i18n="brandTitle">شركة الماسة للتطوير</h2>
+        <span id="txtBrandSub" data-i18n="brandSub">قطاع التصدير الزراعي والغذائي</span>
+      </div>
+    </div>
+
+    <nav class="adm-nav">
+      <a class="adm-nav-item active" data-section="overview">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        <span id="txtNavOverview" data-i18n="navOverview">نظرة عامة</span>
+      </a>
+
+      <a class="adm-nav-item" data-section="categories">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+        <span id="txtNavCategories" data-i18n="navCategories">الأقسام الزراعية</span>
+      </a>
+
+      <a class="adm-nav-item" data-section="products">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        <span id="txtNavProducts" data-i18n="navProducts">المنتجات والحاصلات</span>
+      </a>
+
+      <a class="adm-nav-item" data-section="content">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+        <span id="txtNavContent" data-i18n="navContent">محتوى الموقع</span>
+      </a>
+
+      <a class="adm-nav-item" data-section="inquiries">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span id="txtNavInquiries" data-i18n="navInquiries">طلبات الأسعار والرسائل</span>
+        <span class="adm-badge" id="inquiryNavBadge" style="display:none;">0</span>
+      </a>
+
+      <a class="adm-nav-item" data-section="invoices">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span id="txtNavInvoices" data-i18n="navInvoices">فواتير التصدير</span>
+      </a>
+
+      <a class="adm-nav-item" data-section="settings">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span id="txtNavSettings" data-i18n="navSettings">الإعدادات العامة</span>
+      </a>
+    </nav>
+
+    <div class="adm-sidebar-footer">
+      <div class="adm-user-profile">
+        <div class="adm-avatar">M</div>
+        <div class="adm-user-info">
+          <span id="admUserName">مشرف الماسة</span>
+          <small id="admUserRole" data-i18n="adminRole">المشرف العام</small>
+        </div>
+      </div>
+      <button class="adm-btn-logout" id="logoutBtn" title="تسجيل الخروج">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Sidebar Mobile Backdrop Overlay -->
+  <div class="adm-sidebar-overlay" id="admSidebarOverlay"></div>
+
+  <!-- ==========================================================================
+       MAIN VIEWPORT
+       ========================================================================== -->
+  <main class="adm-main">
+    
+    <!-- Top Header -->
+    <header class="adm-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button class="adm-mobile-toggle" id="admMobileToggle" aria-label="Toggle navigation drawer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <div class="adm-header-title">
+          <h1 id="txtHeaderTitle" data-i18n="headerTitle">لوحة تحكم شركة الماسة</h1>
+          <p id="txtHeaderSub" data-i18n="headerSub">نظام إدارة المحتوى والتصدير وقاعدة بيانات MySQL</p>
+        </div>
+      </div>
+      <div class="adm-header-actions">
+        <!-- Language Switcher Button -->
+        <button id="admLangToggleBtn" class="adm-btn-site" style="cursor: pointer; gap: 6px; display: inline-flex; align-items: center;">
+          <span id="admLangFlag" style="display: inline-flex; align-items: center;">
+            <svg class="adm-flag-icon" viewBox="0 0 640 480" width="18" height="13" aria-hidden="true" style="border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);vertical-align:middle;display:inline-block;"><clipPath id="adm-uk-init"><rect width="640" height="480" rx="2"/></clipPath><g clip-path="url(#adm-uk-init)"><rect width="640" height="480" fill="#012169"/><path d="M0 0 L640 480 M640 0 L0 480" stroke="#ffffff" stroke-width="60"/><path d="M0 0 L640 480 M640 0 L0 480" stroke="#c8102e" stroke-width="40"/><path d="M0 0 L320 240 M640 480 L320 240" stroke="#ffffff" stroke-width="20"/><path d="M0 0 L320 240 M640 480 L320 240" stroke="#c8102e" stroke-width="15"/><path d="M320 0 v480 M0 240 h640" stroke="#ffffff" stroke-width="100"/><path d="M320 0 v480 M0 240 h640" stroke="#c8102e" stroke-width="60"/></g></svg>
+          </span>
+          <span id="admLangText">English</span>
+        </button>
+
+        <div class="adm-live-badge">
+          <div class="adm-live-dot"></div>
+          <span id="statDbStatus" data-i18n="dbStatus">قاعدة البيانات متصلة</span>
+        </div>
+        <a href="/" target="_blank" class="adm-btn-site">
+          <span id="txtVisitSite" data-i18n="visitSite">زيارة الموقع</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="adm-content">
+
+      <!-- ================= SECTION 1: OVERVIEW ================= -->
+      <section id="sec-overview" class="adm-section active">
+        <div class="adm-stats-grid">
+          <div class="adm-stat-card">
+            <div class="adm-stat-info">
+              <span data-i18n="statTotalProducts">إجمالي الحاصلات المسجلة</span>
+              <h3 id="statTotalProducts">0</h3>
+            </div>
+            <div class="adm-stat-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/></svg>
+            </div>
+          </div>
+
+          <div class="adm-stat-card">
+            <div class="adm-stat-info">
+              <span data-i18n="statTotalInquiries">طلبات الأسعار والعروض</span>
+              <h3 id="statTotalInquiries">0</h3>
+            </div>
+            <div class="adm-stat-icon" style="color: var(--adm-blue); background: rgba(56, 189, 248, 0.1);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+          </div>
+
+          <div class="adm-stat-card">
+            <div class="adm-stat-info">
+              <span data-i18n="statNewInquiries">طلبات جديدة غير مقروءة</span>
+              <h3 id="statNewInquiries" style="color: var(--adm-orange);">0</h3>
+            </div>
+            <div class="adm-stat-icon" style="color: var(--adm-orange); background: rgba(245, 158, 11, 0.1);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            </div>
+          </div>
+
+          <div class="adm-stat-card">
+            <div class="adm-stat-info">
+              <span data-i18n="statTotalInvoices">فواتير وعقود التصدير</span>
+              <h3 id="statTotalInvoices">0</h3>
+            </div>
+            <div class="adm-stat-icon" style="color: var(--adm-gold); background: rgba(212, 175, 55, 0.12); border-color: rgba(212, 175, 55, 0.3);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <h2 data-i18n="guideTitle">دليل وتوجيهات تشغيل النظام</h2>
+          </div>
+          <p id="txtGuideDesc" data-i18n="guideDesc" style="color: var(--adm-text-muted); line-height: 1.8; margin-bottom: 16px;">
+            تم تجهيز هذا النظام ليعمل بكفاءة وسرعة فائقة بالاعتماد على قاعدة بيانات MySQL. يمكنك تصدير أو استيراد البيانات وإدارة كافة العمليات من خلال هذه اللوحة المتطورة.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2: CATEGORIES ================= -->
+      <section id="sec-categories" class="adm-section">
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <div>
+              <h2 data-i18n="catHeaderTitle">الأقسام والتصنيفات الزراعية الرئيسية</h2>
+              <p data-i18n="catHeaderSub" style="font-size: 0.8rem; color: var(--adm-text-muted); margin-top: 4px;">إضافة وتعديل الأقسام الرئيسية وتصنيف المحاصيل تحتها</p>
+            </div>
+            <button class="adm-btn-primary" id="openAddCategoryBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+              <span data-i18n="btnAddCategory">إضافة قسم جديد</span>
+            </button>
+          </div>
+
+          <div class="adm-table-wrapper">
+            <table class="adm-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-i18n="thCatNameAr">اسم القسم بالعربية</th>
+                  <th data-i18n="thCatNameEn">اسم القسم بالإنجليزية</th>
+                  <th data-i18n="thCatSlug">الاسم التعريفي</th>
+                  <th data-i18n="thCatIcon">الرمز التعبيري</th>
+                  <th data-i18n="thActions">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 3: PRODUCTS ================= -->
+      <section id="sec-products" class="adm-section">
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <div>
+              <h2 data-i18n="prodHeaderTitle">قائمة المنتجات والحاصلات الزراعية</h2>
+              <p data-i18n="prodHeaderSub" style="font-size: 0.8rem; color: var(--adm-text-muted); margin-top: 4px;">إدارة كافة المحاصيل وربطها بالأقسام الرئيسية للتصدير</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <!-- Trade Type Filter Dropdown -->
+              <select id="prodTradeFilter" class="adm-form-control" style="width: auto; min-width: 180px; padding: 8px 12px;">
+                <option value="" data-i18n="optAllTradeTypes">جميع المعاملات (تصدير واستيراد)</option>
+                <option value="export" data-i18n="optExport">🚢 حاصلات التصدير (Export)</option>
+                <option value="import" data-i18n="optImport">📦 منتجات الاستيراد (Import)</option>
+              </select>
+
+              <!-- Category Filter Dropdown -->
+              <select id="prodCategoryFilter" class="adm-form-control" style="width: auto; min-width: 180px; padding: 8px 12px;">
+                <option value="" data-i18n="optAllCategories">جميع الأقسام الزراعية</option>
+              </select>
+
+              <button class="adm-btn-primary" id="openAddProductBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                <span data-i18n="btnAddProduct">إضافة حاصلات جديدة</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="adm-table-wrapper">
+            <table class="adm-table">
+              <thead>
+                <tr>
+                  <th data-i18n="thImage">الصورة</th>
+                  <th data-i18n="thProductName">اسم المحصول</th>
+                  <th data-i18n="thTradeType">نوع المعاملة</th>
+                  <th data-i18n="thCategory">القسم الزراعي</th>
+                  <th data-i18n="thSeason">الموسم</th>
+                  <th data-i18n="thPackaging">التعبئة والتغليف</th>
+                  <th data-i18n="thActions">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION: WEBSITE CONTENT (محتوى الموقع) ================= -->
+      <section id="sec-content" class="adm-section">
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <div>
+              <h2 data-i18n="contentHeaderTitle">إدارة وتعديل محتوى الموقع بالكامل</h2>
+              <p data-i18n="contentHeaderSub" style="font-size: 0.8rem; color: var(--adm-text-muted); margin-top: 4px;">التحكم في نصوص وصور الواجهة الرئيسية، من نحن، الرؤية، القيادات، الإحصائيات، وسلسلة التصدير</p>
+            </div>
+          </div>
+
+          <!-- Sub Navigation Tabs -->
+          <div class="adm-subnav">
+            <button class="adm-subtab-btn active" data-subtab="hero">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span data-i18n="subtabHero">الواجهة الرئيسية</span>
+            </button>
+            <button class="adm-subtab-btn" data-subtab="about">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+              <span data-i18n="subtabAbout">عن الشركة والرؤية</span>
+            </button>
+            <button class="adm-subtab-btn" data-subtab="board">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span data-i18n="subtabBoard">مجلس الإدارة والقيادات</span>
+            </button>
+            <button class="adm-subtab-btn" data-subtab="stats">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+              <span data-i18n="subtabStats">الأرقام والإحصائيات</span>
+            </button>
+            <button class="adm-subtab-btn" data-subtab="values">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span data-i18n="subtabValues">القيم والمبادئ</span>
+            </button>
+            <button class="adm-subtab-btn" data-subtab="farms">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 10v12"/><path d="M12 10a5 5 0 0 0 5-5c0-2-2-3-5-3s-5 1-5 3a5 5 0 0 0 5 5z"/></svg>
+              <span data-i18n="subtabFarms">المزارع وسلسلة التصدير</span>
+            </button>
+            <button class="adm-subtab-btn" data-subtab="projects">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/><line x1="3" x2="21" y1="9" y2="9"/></svg>
+              <span data-i18n="subtabProjects">سابقة الأعمال والمشروعات</span>
+            </button>
+          </div>
+
+          <!-- 1. SUBPANEL: HERO -->
+          <div id="subpanel-hero" class="adm-content-subpanel active">
+            <form id="heroContentForm">
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroBadgeAr">الشريط الترويجي العلوي بالعربية</label>
+                  <input type="text" id="heroBadgeAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroBadgeEn">الشريط الترويجي العلوي بالإنجليزية</label>
+                  <input type="text" id="heroBadgeEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroTitleAr">العنوان الرئيسي للواجهة بالعربية</label>
+                  <input type="text" id="heroTitleAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroTitleEn">العنوان الرئيسي للواجهة بالإنجليزية</label>
+                  <input type="text" id="heroTitleEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroSubAr">الوصف الترويجي بالعربية</label>
+                  <textarea id="heroSubAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroSubEn">الوصف الترويجي بالإنجليزية</label>
+                  <textarea id="heroSubEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroCtaCatalogAr">نص زر الكتالوج بالعربية</label>
+                  <input type="text" id="heroCtaCatalogAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroCtaCatalogEn">نص زر الكتالوج بالإنجليزية</label>
+                  <input type="text" id="heroCtaCatalogEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroCtaRfqAr">نص زر طلب التسعير بالعربية</label>
+                  <input type="text" id="heroCtaRfqAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroCtaRfqEn">نص زر طلب التسعير بالإنجليزية</label>
+                  <input type="text" id="heroCtaRfqEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroFloat1Ar">البطاقة العائمة 1 (العنوان والوصف بالعربية)</label>
+                  <input type="text" id="heroFloat1TitleAr" class="adm-form-control" style="margin-bottom:6px;">
+                  <input type="text" id="heroFloat1SubAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroFloat1En">البطاقة العائمة 1 (العنوان والوصف بالإنجليزية)</label>
+                  <input type="text" id="heroFloat1TitleEn" class="adm-form-control" style="margin-bottom:6px;">
+                  <input type="text" id="heroFloat1SubEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroFloat2Ar">البطاقة العائمة 2 (العنوان والوصف بالعربية)</label>
+                  <input type="text" id="heroFloat2TitleAr" class="adm-form-control" style="margin-bottom:6px;">
+                  <input type="text" id="heroFloat2SubAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroFloat2En">البطاقة العائمة 2 (العنوان والوصف بالإنجليزية)</label>
+                  <input type="text" id="heroFloat2TitleEn" class="adm-form-control" style="margin-bottom:6px;">
+                  <input type="text" id="heroFloat2SubEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroImage">صورة خلفية الواجهة الرئيسية (رفع ملف أو مسار)</label>
+                  <input type="text" id="heroImageUrl" class="adm-form-control" placeholder="assets/images/hero.jpg">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblHeroImageUpload">رفع صورة جديدة</label>
+                  <input type="file" id="heroImageFile" class="adm-form-control" accept="image/*">
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                <button type="submit" class="adm-btn-primary">
+                  <span data-i18n="btnSaveHero">حفظ تعديلات الواجهة الرئيسية</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 2. SUBPANEL: ABOUT -->
+          <div id="subpanel-about" class="adm-content-subpanel">
+            <form id="aboutContentForm">
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblAboutTitleAr">عنوان قسم من نحن بالعربية</label>
+                  <input type="text" id="aboutTitleAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblAboutTitleEn">عنوان قسم من نحن بالإنجليزية</label>
+                  <input type="text" id="aboutTitleEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblAboutDescAr">قصة وتاريخ الشركة بالعربية</label>
+                  <textarea id="aboutDescAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblAboutDescEn">قصة وتاريخ الشركة بالإنجليزية</label>
+                  <textarea id="aboutDescEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblVisionTextAr">نص الرؤية بالعربية</label>
+                  <textarea id="aboutVisionAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblVisionTextEn">نص الرؤية بالإنجليزية</label>
+                  <textarea id="aboutVisionEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblMissionTextAr">نص الرسالة بالعربية</label>
+                  <textarea id="aboutMissionAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblMissionTextEn">نص الرسالة بالإنجليزية</label>
+                  <textarea id="aboutMissionEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblMgmtMsgAr">كلمة الإدارة بالعربية</label>
+                  <textarea id="aboutMsgAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblMgmtMsgEn">كلمة الإدارة بالإنجليزية</label>
+                  <textarea id="aboutMsgEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblMgmtSignAr">توقيع وصفة الإدارة بالعربية</label>
+                  <input type="text" id="aboutSignAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblMgmtSignEn">توقيع وصفة الإدارة بالإنجليزية</label>
+                  <input type="text" id="aboutSignEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                <button type="submit" class="adm-btn-primary">
+                  <span data-i18n="btnSaveAbout">حفظ تعديلات قسم من نحن والرؤية</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 3. SUBPANEL: BOARD MEMBERS -->
+          <div id="subpanel-board" class="adm-content-subpanel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div>
+                <h3 style="color: var(--adm-gold); font-size: 1.05rem;" data-i18n="boardListTitle">أعضاء مجلس الإدارة والقيادات التنفيذية</h3>
+                <p style="font-size: 0.8rem; color: var(--adm-text-muted);" data-i18n="boardListSub">إضافة وتعديل وحذف قيادات الشركة وتحديد أدوارهم وسيرهم المهنية</p>
+              </div>
+              <button class="adm-btn-primary" id="openAddBoardBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                <span data-i18n="btnAddBoardMember">إضافة عضو مجلس إدارة</span>
+              </button>
+            </div>
+
+            <div class="adm-table-wrapper">
+              <table class="adm-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="thBoardPhoto">الصورة</th>
+                    <th data-i18n="thBoardName">الاسم والصفة</th>
+                    <th data-i18n="thBoardRole">المسمى الوظيفي</th>
+                    <th data-i18n="thBoardBio">نبذة مهنية</th>
+                    <th data-i18n="thActions">الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="boardTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 4. SUBPANEL: STATS -->
+          <div id="subpanel-stats" class="adm-content-subpanel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div>
+                <h3 style="color: var(--adm-gold); font-size: 1.05rem;" data-i18n="statsListTitle">أرقام وإحصائيات النجاح في الموقع</h3>
+                <p style="font-size: 0.8rem; color: var(--adm-text-muted);" data-i18n="statsListSub">إدارة البطاقات الرقمية المميزة مثل عدد الأفدنة وسنوات الخبرة والاعتمادات</p>
+              </div>
+              <button class="adm-btn-primary" id="openAddStatBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                <span data-i18n="btnAddStat">إضافة رقم إحصائي جديد</span>
+              </button>
+            </div>
+
+            <div id="statsItemsContainer">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 5. SUBPANEL: VALUES -->
+          <div id="subpanel-values" class="adm-content-subpanel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div>
+                <h3 style="color: var(--adm-gold); font-size: 1.05rem;" data-i18n="valuesListTitle">قيم ومبادئ شركة الماسة</h3>
+                <p style="font-size: 0.8rem; color: var(--adm-text-muted);" data-i18n="valuesListSub">التحكم في المبادئ الستة التي تقود تميز الشركة في التصدير والاستثمار</p>
+              </div>
+              <button class="adm-btn-primary" id="openAddValueBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                <span data-i18n="btnAddValue">إضافة قيمة جديدة</span>
+              </button>
+            </div>
+
+            <div id="valuesItemsContainer">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- 6. SUBPANEL: FARMS & QUALITY CHAIN -->
+          <div id="subpanel-farms" class="adm-content-subpanel">
+            <form id="farmsContentForm">
+              <h4 style="color:var(--adm-gold); margin-bottom:12px;" data-i18n="farmsHeaderSection">بيانات قسم المزارع والاستثمار الزراعي</h4>
+              
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblFarmsTitleAr">عنوان قسم المزارع بالعربية</label>
+                  <input type="text" id="farmsTitleAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblFarmsTitleEn">عنوان قسم المزارع بالإنجليزية</label>
+                  <input type="text" id="farmsTitleEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblFarmsDescAr">وصف قسم المزارع والري المحوري بالعربية</label>
+                  <textarea id="farmsDescAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblFarmsDescEn">وصف قسم المزارع والري المحوري بالإنجليزية</label>
+                  <textarea id="farmsDescEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <hr style="border:none; border-top:1px solid var(--adm-border); margin:20px 0;">
+
+              <h4 style="color:var(--adm-gold); margin-bottom:12px;" data-i18n="processHeaderSection">سلسلة الجودة ومراحل التصدير</h4>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblProcessTitleAr">عنوان سلسلة الجودة والتصدير بالعربية</label>
+                  <input type="text" id="processTitleAr" class="adm-form-control">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblProcessTitleEn">عنوان سلسلة الجودة والتصدير بالإنجليزية</label>
+                  <input type="text" id="processTitleEn" class="adm-form-control">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblProcessDescAr">شرح بروتوكول الجودة والتصدير بالعربية</label>
+                  <textarea id="processDescAr" class="adm-form-control"></textarea>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblProcessDescEn">شرح بروتوكول الجودة والتصدير بالإنجليزية</label>
+                  <textarea id="processDescEn" class="adm-form-control"></textarea>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                <button type="submit" class="adm-btn-primary">
+                  <span data-i18n="btnSaveFarms">حفظ تعديلات المزارع وسلسلة التصدير</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 7. SUBPANEL: ALMASA TRACK RECORD & PROJECTS -->
+          <div id="subpanel-projects" class="adm-content-subpanel">
+            <div class="adm-subpanel-header">
+              <div>
+                <h3 style="color: var(--adm-gold); font-size: 1.05rem;" data-i18n="projectsListTitle">المشروعات الكبرى وسابقة الأعمال (ALMASA TRACK RECORD)</h3>
+                <p style="font-size: 0.8rem; color: var(--adm-text-muted); margin-top: 3px;" data-i18n="projectsListSub">إضافة وتعديل وحذف مشروعات وسلايدات سابقة الأعمال ورفع الصور والتعديل الفوري على الموقع الرئيسي</p>
+              </div>
+              <button class="adm-btn-primary" id="openAddProjectBtn" style="white-space: nowrap; flex-shrink: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                <span data-i18n="btnAddProject">إضافة مشروع / سابقة أعمال</span>
+              </button>
+            </div>
+
+            <div class="adm-table-wrapper">
+              <table class="adm-table">
+                <thead>
+                  <tr>
+                    <th style="width: 95px; text-align: center;" data-i18n="thProjectImage">صورة المشروع</th>
+                    <th style="width: 25%; min-width: 175px;" data-i18n="thProjectTitle">اسم المشروع</th>
+                    <th style="width: 22%; min-width: 160px;" data-i18n="thProjectEntity">جهة الإسناد / التعاقد</th>
+                    <th style="min-width: 220px;" data-i18n="thProjectDesc">الوصف ونطاق العمل</th>
+                    <th style="width: 120px; text-align: center; white-space: nowrap;" data-i18n="thActions">الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="projectsTableBody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4: INQUIRIES & RFQ ================= -->
+      <section id="sec-inquiries" class="adm-section">
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <h2 data-i18n="inqHeaderTitle">صندوق طلبات عروض الأسعار والتواصل</h2>
+          </div>
+
+          <div class="adm-table-wrapper">
+            <table class="adm-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-i18n="thClient">العميل / الشركة</th>
+                  <th data-i18n="thContact">وسيلة التواصل</th>
+                  <th data-i18n="thCountry">الدولة</th>
+                  <th data-i18n="thProductQty">المنتج والكمية</th>
+                  <th data-i18n="thStatus">الحالة</th>
+                  <th data-i18n="thAction">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 5: INVOICES ================= -->
+      <section id="sec-invoices" class="adm-section">
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <h2 data-i18n="invHeaderTitle">فواتير وعقود التصدير الدولية</h2>
+            <button class="adm-btn-primary" id="openAddInvoiceBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+              <span data-i18n="btnCreateInvoice">إنشاء فاتورة تصدير</span>
+            </button>
+          </div>
+
+          <div class="adm-table-wrapper">
+            <table class="adm-table">
+              <thead>
+                <tr>
+                  <th data-i18n="thInvoiceNum">رقم الفاتورة</th>
+                  <th data-i18n="thImporter">المستورد / العميل</th>
+                  <th data-i18n="thDestination">دولة الوصول</th>
+                  <th data-i18n="thTotalVal">إجمالي القيمة</th>
+                  <th data-i18n="thStatus">الحالة</th>
+                  <th data-i18n="thAction">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="invoicesTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 6: GENERAL SETTINGS ================= -->
+      <section id="sec-settings" class="adm-section">
+        <div class="adm-card-container">
+          <div class="adm-card-header">
+            <div>
+              <h2 id="txtSettingsHeader" data-i18n="settingsHeader">الإعدادات العامة للشركة</h2>
+              <p id="txtSettingsSub" data-i18n="settingsSub" style="font-size: 0.82rem; color: var(--adm-text-muted); margin-top: 4px;">تعديل أرقام الهواتف والواتساب والعناوين وحسابات التواصل الاجتماعي</p>
+            </div>
+          </div>
+
+          <form id="settingsForm">
+            <!-- 1. Contact Numbers -->
+            <div style="margin-bottom: 24px;">
+              <h3 style="color: var(--adm-gold); font-size: 1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span data-i18n="secContactTitle">أرقام الهواتف والتواصل المباشر</span>
+              </h3>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblCompanyPhone">رقم الهاتف الرسمي *</label>
+                  <input type="text" id="setCompanyPhone" class="adm-form-control" placeholder="+20 100 000 0000" required>
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblCompanyWhatsapp">رقم الواتساب للتصدير *</label>
+                  <input type="text" id="setCompanyWhatsapp" class="adm-form-control" placeholder="+20 100 000 0000" required>
+                </div>
+              </div>
+
+              <div class="adm-form-group">
+                <label data-i18n="lblCompanyEmail">البريد الإلكتروني الرسمي *</label>
+                <input type="email" id="setCompanyEmail" class="adm-form-control" placeholder="info@almasagroup-eg.com" required>
+              </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--adm-border); margin: 24px 0;">
+
+            <!-- 2. Company Identity -->
+            <div style="margin-bottom: 24px;">
+              <h3 style="color: var(--adm-gold); font-size: 1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+                <span data-i18n="secIdentityTitle">بيانات وهوية الشركة</span>
+              </h3>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblCompanyNameAr">اسم الشركة بالعربية</label>
+                  <input type="text" id="setCompanyNameAr" class="adm-form-control" placeholder="شركة الماسة للتطوير والتصدير الزراعي والغذائي">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblCompanyNameEn">اسم الشركة بالإنجليزية</label>
+                  <input type="text" id="setCompanyNameEn" class="adm-form-control" placeholder="ALMASA Development & Agro-Export Co.">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblCompanyAddressAr">عنوان المقر والمزارع بالعربية</label>
+                  <input type="text" id="setCompanyAddressAr" class="adm-form-control" placeholder="جمهورية مصر العربية - مزارع وادي النطرون والبستان">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblCompanyAddressEn">عنوان المقر والمزارع بالإنجليزية</label>
+                  <input type="text" id="setCompanyAddressEn" class="adm-form-control" placeholder="Egypt - Wadi El-Natrun & Bustan Agro Farms">
+                </div>
+              </div>
+
+              <div class="adm-form-group">
+                <label data-i18n="lblAboutSummary">نبذة تعريفية عن الشركة</label>
+                <textarea id="setAboutSummaryAr" class="adm-form-control" placeholder="ريادة مصرية بمعايير عالمية في التصدير الزراعي والغذائي والاستثمار المستدام."></textarea>
+              </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--adm-border); margin: 24px 0;">
+
+            <!-- 3. Social Media Links -->
+            <div style="margin-bottom: 24px;">
+              <h3 style="color: var(--adm-gold); font-size: 1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                <span data-i18n="secSocialTitle">روابط حسابات التواصل الاجتماعي</span>
+              </h3>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblFacebook">رابط صفحة فيسبوك</label>
+                  <input type="url" id="setFacebookUrl" class="adm-form-control" placeholder="https://facebook.com/almasa-export">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblLinkedin">رابط منصة لينكد إن</label>
+                  <input type="url" id="setLinkedinUrl" class="adm-form-control" placeholder="https://linkedin.com/company/almasa">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblInstagram">رابط حساب إنستجرام</label>
+                  <input type="url" id="setInstagramUrl" class="adm-form-control" placeholder="https://instagram.com/almasa_agro">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblYoutube">رابط قناة يوتيوب</label>
+                  <input type="url" id="setYoutubeUrl" class="adm-form-control" placeholder="https://youtube.com/@almasagroup">
+                </div>
+              </div>
+
+              <div class="adm-form-row">
+                <div class="adm-form-group">
+                  <label data-i18n="lblTiktok">رابط حساب تيك توك</label>
+                  <input type="url" id="setTiktokUrl" class="adm-form-control" placeholder="https://tiktok.com/@almasa_agro">
+                </div>
+                <div class="adm-form-group">
+                  <label data-i18n="lblTwitter">رابط منصة إكس</label>
+                  <input type="url" id="setTwitterUrl" class="adm-form-control" placeholder="https://x.com/almasa_agro">
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+              <button type="submit" class="adm-btn-primary" style="padding: 12px 28px; font-size: 0.95rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span data-i18n="btnSaveSettings">حفظ التعديلات في قاعدة البيانات</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+
+  <!-- 1. Login Modal -->
+  <div class="adm-modal-backdrop" id="loginModal">
+    <div class="adm-modal" style="max-width: 440px; text-align: center;">
+      <div class="adm-logo-wrapper" style="width: 80px; height: 80px; margin: 0 auto 16px;">
+        <img src="/assets/images/logo_diamond.png" alt="ALMASA Diamond Emblem" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.95));">
+      </div>
+      <h3 id="loginModalTitle" data-i18n="loginTitle" style="font-size: 1.4rem; color: #fff; font-weight: 800; margin-bottom: 6px;">تسجيل دخول الإدارة</h3>
+      <p id="loginModalSub" data-i18n="loginSub" style="font-size: 0.85rem; color: var(--adm-text-muted); margin-bottom: 24px;">بوابة الإدارة والتصدير لشركة الماسة</p>
+
+      <div id="loginError" style="display:none; background: rgba(239, 68, 68, 0.15); border: 1px solid var(--adm-red); color: #fca5a5; padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 16px;"></div>
+
+      <form id="loginForm" style="text-align: right;">
+        <div class="adm-form-group">
+          <label data-i18n="lblLoginUsername">اسم المستخدم أو البريد الإلكتروني</label>
+          <input type="text" id="loginUsername" class="adm-form-control" placeholder="admin" required value="admin">
+        </div>
+        <div class="adm-form-group">
+          <label data-i18n="lblLoginPassword">كلمة المرور</label>
+          <input type="password" id="loginPassword" class="adm-form-control" placeholder="••••••••" required value="admin123">
+        </div>
+        <button type="submit" class="adm-btn-primary" style="width: 100%; justify-content: center; margin-top: 10px; padding: 12px;">
+          <span data-i18n="btnLoginSubmit">دخول لوحة التحكم</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Product Add/Edit Modal -->
+  <div class="adm-modal-backdrop" id="productModal">
+    <div class="adm-modal">
+      <div class="adm-modal-header">
+        <h3 id="productModalTitle" data-i18n="prodModalAddTitle">إضافة حاصلات زراعية للتصدير</h3>
+        <button class="adm-modal-close" id="closeProductModal">&times;</button>
+      </div>
+      <form id="productForm">
+        <input type="hidden" id="prodId">
+        
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProdTradeType">نوع المعاملة التجارية (تصدير / استيراد) *</label>
+            <select id="prodTradeType" class="adm-form-control" required>
+              <option value="export" selected>🚢 حاصلات ومنتجات للتصدير (Export)</option>
+              <option value="import">📦 سلع ومنتجات للاستيراد (Import)</option>
+            </select>
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProdCategory">القسم والتصنيف الزراعي *</label>
+            <select id="prodCategory" class="adm-form-control" required></select>
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProdNameAr">اسم المحصول بالعربية *</label>
+            <input type="text" id="prodNameAr" class="adm-form-control" required placeholder="مثال: البرتقال الفالنسيا">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProdNameEn">اسم المحصول بالإنجليزية</label>
+            <input type="text" id="prodNameEn" class="adm-form-control" placeholder="Valencia Oranges">
+          </div>
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblProdTag">الوسم المميز</label>
+          <input type="text" id="prodTagAr" class="adm-form-control" placeholder="صادرات الدرجة الأولى">
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProdVariety">الصنف والنوع</label>
+            <input type="text" id="prodVarietyAr" class="adm-form-control" placeholder="فالنسيا عالي العصارة">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProdSeason">مواسم الإنتاج والتصدير</label>
+            <input type="text" id="prodSeasonAr" class="adm-form-control" placeholder="ديسمبر إلى مايو">
+          </div>
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblProdPackaging">مواصفات التعبئة والتغليف والشحن</label>
+          <input type="text" id="prodPackagingAr" class="adm-form-control" placeholder="كرتون تلسكوبي 15 كجم أو أوبن توب">
+        </div>
+
+        <!-- Product Images Gallery Section (Up to 5 Images) -->
+        <div class="adm-gallery-manager-box">
+          <div class="adm-gallery-header">
+            <div>
+              <label class="adm-gallery-title" data-i18n="lblProdGalleryTitle">📸 معرض صور المحصول (5 صور بدقة عالية)</label>
+              <p class="adm-gallery-sub" data-i18n="lblProdGallerySub">يمكنك رفع حتى 5 صور للمنتج من الخانات أدناه أو رفعها دفعة واحدة. الصورة 1 هي الصورة الرئيسية في واجهة الموقع.</p>
+            </div>
+            <div class="adm-gallery-counter" id="galleryCountBadge">0 / 5 صور</div>
+          </div>
+
+          <!-- Top Batch Upload Bar -->
+          <div class="adm-gallery-batch-bar">
+            <label class="adm-batch-upload-btn" for="prodMultiImagesFile">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+              <span id="batchUploadBtnText" data-i18n="lblProdMultiUpload">📁 رفع حتى 5 صور دفعة واحدة من جهازك</span>
+            </label>
+            <input type="file" id="prodMultiImagesFile" accept="image/*" multiple style="display:none;">
+            
+            <div style="display: flex; gap: 8px; flex: 1; min-width: 240px;">
+              <input type="text" id="prodAddImageUrlInput" class="adm-form-control" placeholder="أو اكتب رابط الصورة (assets/images/products/...jpg)">
+              <button type="button" id="btnAddImageUrlBtn" class="adm-btn-secondary" style="white-space: nowrap; padding: 8px 14px;">
+                <span data-i18n="btnAddUrl">＋ إضافة رابط</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5-Slot Interactive Cards Grid -->
+          <div class="adm-gallery-slots-grid" id="productGallerySlots">
+            <!-- Slot 1 (Primary) -->
+            <div class="adm-slot-card is-primary" id="slotCard_0">
+              <div class="adm-slot-card-header">
+                <span class="adm-slot-pill primary" id="slotPill_0">★ الصورة 1 (الرئيسية)</span>
+              </div>
+              <div class="adm-slot-preview-box" id="slotPreview_0" onclick="triggerSlotUpload(0)">
+                <div class="adm-slot-placeholder">
+                  <span class="adm-slot-icon">📷</span>
+                  <span class="adm-slot-text" id="slotText_0">+ رفع الصورة الرئيسية</span>
+                </div>
+              </div>
+              <div class="adm-slot-card-actions">
+                <button type="button" class="adm-slot-action-btn upload" onclick="triggerSlotUpload(0)" id="slotUploadBtn_0">رفع من الجهاز</button>
+                <button type="button" class="adm-slot-action-btn delete" onclick="removeSlotImage(0)" style="display:none;" id="slotDelBtn_0">حذف ✕</button>
+              </div>
+              <input type="file" id="slotFile_0" accept="image/*" style="display:none;" onchange="handleSingleSlotUpload(0, this)">
+              <input type="hidden" id="slotUrl_0">
+            </div>
+
+            <!-- Slot 2 -->
+            <div class="adm-slot-card" id="slotCard_1">
+              <div class="adm-slot-card-header">
+                <span class="adm-slot-pill" id="slotPill_1">الصورة 2 (إضافية)</span>
+              </div>
+              <div class="adm-slot-preview-box" id="slotPreview_1" onclick="triggerSlotUpload(1)">
+                <div class="adm-slot-placeholder">
+                  <span class="adm-slot-icon">📷</span>
+                  <span class="adm-slot-text" id="slotText_1">+ رفع صورة 2</span>
+                </div>
+              </div>
+              <div class="adm-slot-card-actions">
+                <button type="button" class="adm-slot-action-btn upload" onclick="triggerSlotUpload(1)" id="slotUploadBtn_1">رفع من الجهاز</button>
+                <button type="button" class="adm-slot-action-btn make-main" onclick="makeSlotImagePrimary(1)" style="display:none;" id="slotMainBtn_1">رئيسية ⭐</button>
+                <button type="button" class="adm-slot-action-btn delete" onclick="removeSlotImage(1)" style="display:none;" id="slotDelBtn_1">حذف ✕</button>
+              </div>
+              <input type="file" id="slotFile_1" accept="image/*" style="display:none;" onchange="handleSingleSlotUpload(1, this)">
+              <input type="hidden" id="slotUrl_1">
+            </div>
+
+            <!-- Slot 3 -->
+            <div class="adm-slot-card" id="slotCard_2">
+              <div class="adm-slot-card-header">
+                <span class="adm-slot-pill" id="slotPill_2">الصورة 3 (إضافية)</span>
+              </div>
+              <div class="adm-slot-preview-box" id="slotPreview_2" onclick="triggerSlotUpload(2)">
+                <div class="adm-slot-placeholder">
+                  <span class="adm-slot-icon">📷</span>
+                  <span class="adm-slot-text" id="slotText_2">+ رفع صورة 3</span>
+                </div>
+              </div>
+              <div class="adm-slot-card-actions">
+                <button type="button" class="adm-slot-action-btn upload" onclick="triggerSlotUpload(2)" id="slotUploadBtn_2">رفع من الجهاز</button>
+                <button type="button" class="adm-slot-action-btn make-main" onclick="makeSlotImagePrimary(2)" style="display:none;" id="slotMainBtn_2">رئيسية ⭐</button>
+                <button type="button" class="adm-slot-action-btn delete" onclick="removeSlotImage(2)" style="display:none;" id="slotDelBtn_2">حذف ✕</button>
+              </div>
+              <input type="file" id="slotFile_2" accept="image/*" style="display:none;" onchange="handleSingleSlotUpload(2, this)">
+              <input type="hidden" id="slotUrl_2">
+            </div>
+
+            <!-- Slot 4 -->
+            <div class="adm-slot-card" id="slotCard_3">
+              <div class="adm-slot-card-header">
+                <span class="adm-slot-pill" id="slotPill_3">الصورة 4 (إضافية)</span>
+              </div>
+              <div class="adm-slot-preview-box" id="slotPreview_3" onclick="triggerSlotUpload(3)">
+                <div class="adm-slot-placeholder">
+                  <span class="adm-slot-icon">📷</span>
+                  <span class="adm-slot-text" id="slotText_3">+ رفع صورة 4</span>
+                </div>
+              </div>
+              <div class="adm-slot-card-actions">
+                <button type="button" class="adm-slot-action-btn upload" onclick="triggerSlotUpload(3)" id="slotUploadBtn_3">رفع من الجهاز</button>
+                <button type="button" class="adm-slot-action-btn make-main" onclick="makeSlotImagePrimary(3)" style="display:none;" id="slotMainBtn_3">رئيسية ⭐</button>
+                <button type="button" class="adm-slot-action-btn delete" onclick="removeSlotImage(3)" style="display:none;" id="slotDelBtn_3">حذف ✕</button>
+              </div>
+              <input type="file" id="slotFile_3" accept="image/*" style="display:none;" onchange="handleSingleSlotUpload(3, this)">
+              <input type="hidden" id="slotUrl_3">
+            </div>
+
+            <!-- Slot 5 -->
+            <div class="adm-slot-card" id="slotCard_4">
+              <div class="adm-slot-card-header">
+                <span class="adm-slot-pill" id="slotPill_4">الصورة 5 (إضافية)</span>
+              </div>
+              <div class="adm-slot-preview-box" id="slotPreview_4" onclick="triggerSlotUpload(4)">
+                <div class="adm-slot-placeholder">
+                  <span class="adm-slot-icon">📷</span>
+                  <span class="adm-slot-text" id="slotText_4">+ رفع صورة 5</span>
+                </div>
+              </div>
+              <div class="adm-slot-card-actions">
+                <button type="button" class="adm-slot-action-btn upload" onclick="triggerSlotUpload(4)" id="slotUploadBtn_4">رفع من الجهاز</button>
+                <button type="button" class="adm-slot-action-btn make-main" onclick="makeSlotImagePrimary(4)" style="display:none;" id="slotMainBtn_4">رئيسية ⭐</button>
+                <button type="button" class="adm-slot-action-btn delete" onclick="removeSlotImage(4)" style="display:none;" id="slotDelBtn_4">حذف ✕</button>
+              </div>
+              <input type="file" id="slotFile_4" accept="image/*" style="display:none;" onchange="handleSingleSlotUpload(4, this)">
+              <input type="hidden" id="slotUrl_4">
+            </div>
+          </div>
+          <input type="hidden" id="prodImageUrl">
+        </div>
+
+        <div class="adm-form-group" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+          <input type="checkbox" id="prodFeatured" checked style="width: 18px; height: 18px; accent-color: var(--adm-gold);">
+          <label for="prodFeatured" data-i18n="lblProdFeatured" style="margin-bottom: 0; cursor: pointer;">عرض في الصفحة الرئيسية كمنتج رئيسي مميز</label>
+        </div>
+
+        <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnSaveDatabase">حفظ في قاعدة البيانات</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Board Member Add/Edit Modal -->
+  <div class="adm-modal-backdrop" id="boardModal">
+    <div class="adm-modal">
+      <div class="adm-modal-header">
+        <h3 id="boardModalTitle" data-i18n="boardModalAddTitle">إضافة عضو مجلس إدارة جديد</h3>
+        <button class="adm-modal-close" id="closeBoardModal">&times;</button>
+      </div>
+      <form id="boardForm">
+        <input type="hidden" id="boardId">
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardNameAr">الاسم واللقب بالعربية *</label>
+            <input type="text" id="boardNameAr" class="adm-form-control" required placeholder="مثال: الدكتور / محمد علي">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardNameEn">الاسم واللقب بالإنجليزية *</label>
+            <input type="text" id="boardNameEn" class="adm-form-control" placeholder="Dr. Mohamed Ali">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardRoleAr">المسمى والمنصب بالعربية *</label>
+            <input type="text" id="boardRoleAr" class="adm-form-control" required placeholder="رئيس مجلس الإدارة والعضو المنتدب">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardRoleEn">المسمى والمنصب بالإنجليزية *</label>
+            <input type="text" id="boardRoleEn" class="adm-form-control" placeholder="Chairman & Managing Director">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardBioAr">النبذة المهنية بالعربية</label>
+            <textarea id="boardBioAr" class="adm-form-control" placeholder="خبرة تفوق 20 عاماً في..."></textarea>
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardBioEn">النبذة المهنية بالإنجليزية</label>
+            <textarea id="boardBioEn" class="adm-form-control" placeholder="Over 20 years of expertise in..."></textarea>
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardImage">الصورة الشخصية (رفع أو مسار)</label>
+            <input type="text" id="boardImageUrl" class="adm-form-control" placeholder="assets/images/board_avatar.png">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblBoardImageUpload">رفع صورة العضو</label>
+            <input type="file" id="boardImageFile" class="adm-form-control" accept="image/*">
+          </div>
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblBoardOrder">ترتيب الظهور</label>
+          <input type="number" id="boardSortOrder" class="adm-form-control" value="0">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnSaveBoardMember">حفظ العضو في قاعدة البيانات</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Stat Item Add/Edit Modal -->
+  <div class="adm-modal-backdrop" id="statModal">
+    <div class="adm-modal" style="max-width: 480px;">
+      <div class="adm-modal-header">
+        <h3 id="statModalTitle" data-i18n="statModalAddTitle">إضافة رقم إحصائي</h3>
+        <button class="adm-modal-close" id="closeStatModal">&times;</button>
+      </div>
+      <form id="statForm">
+        <input type="hidden" id="statItemId">
+
+        <div class="adm-form-group">
+          <label data-i18n="lblStatValue">الرقم أو القيمة *</label>
+          <input type="text" id="statItemValue" class="adm-form-control" required placeholder="مثال: 620+ أو 100%">
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblStatLabelAr">الوصف بالعربية *</label>
+          <input type="text" id="statItemLabelAr" class="adm-form-control" required placeholder="فدان استثمار زراعي نشط">
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblStatLabelEn">الوصف بالإنجليزية *</label>
+          <input type="text" id="statItemLabelEn" class="adm-form-control" required placeholder="Acres Active Agro Investment">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnSaveStatItem">حفظ الرقم الإحصائي</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Value Item Add/Edit Modal -->
+  <div class="adm-modal-backdrop" id="valueModal">
+    <div class="adm-modal" style="max-width: 520px;">
+      <div class="adm-modal-header">
+        <h3 id="valueModalTitle" data-i18n="valueModalAddTitle">إضافة قيمة ومبدأ</h3>
+        <button class="adm-modal-close" id="closeValueModal">&times;</button>
+      </div>
+      <form id="valueForm">
+        <input type="hidden" id="valueItemId">
+
+        <div class="adm-form-group">
+          <label data-i18n="lblValueNum">الرقم التسلسلي *</label>
+          <input type="text" id="valueItemNum" class="adm-form-control" required placeholder="01 أو 02">
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblValueTitleAr">عنوان القيمة بالعربية *</label>
+            <input type="text" id="valueItemTitleAr" class="adm-form-control" required placeholder="الشفافية والنزاهة">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblValueTitleEn">عنوان القيمة بالإنجليزية *</label>
+            <input type="text" id="valueItemTitleEn" class="adm-form-control" required placeholder="Transparency & Integrity">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblValueDescAr">شرح القيمة بالعربية</label>
+            <textarea id="valueItemDescAr" class="adm-form-control"></textarea>
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblValueDescEn">شرح القيمة بالإنجليزية</label>
+            <textarea id="valueItemDescEn" class="adm-form-control"></textarea>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnSaveValueItem">حفظ القيمة</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Inquiry Details Modal -->
+  <div class="adm-modal-backdrop" id="inquiryDetailModal">
+    <div class="adm-modal">
+      <div class="adm-modal-header">
+        <h3 id="inqModalTitle" data-i18n="inqModalTitle">تفاصيل طلب عرض السعر والتواصل</h3>
+        <button class="adm-modal-close" id="closeInquiryModal">&times;</button>
+      </div>
+      <div style="line-height: 2; margin-bottom: 20px;">
+        <p><strong data-i18n="lblInqName">اسم المسؤول:</strong> <span id="inqDetailName"></span></p>
+        <p><strong data-i18n="lblInqCompany">الشركة والمؤسسة:</strong> <span id="inqDetailCompany"></span></p>
+        <p><strong data-i18n="lblInqEmail">البريد الإلكتروني:</strong> <span id="inqDetailEmail" style="color:var(--adm-gold-light);"></span></p>
+        <p><strong data-i18n="lblInqPhone">رقم الهاتف / الواتساب:</strong> <span id="inqDetailPhone"></span></p>
+        <p><strong data-i18n="lblInqCountry">دولة المستورد:</strong> <span id="inqDetailCountry"></span></p>
+        <p><strong data-i18n="lblInqProduct">المنتج المطلوب:</strong> <span id="inqDetailProduct"></span> (<span data-i18n="lblInqQuantity">الكمية:</span> <span id="inqDetailQuantity"></span> - <span data-i18n="lblInqShipping">شرط الشحن:</span> <span id="inqDetailIncoterms"></span>)</p>
+        <div style="background: rgba(0,0,0,0.4); padding: 14px; border-radius: 8px; margin-top: 10px; border: 1px solid var(--adm-border);">
+          <strong data-i18n="lblInqMessage">نص الرسالة والملاحظات:</strong>
+          <div id="inqDetailMessage" style="color: var(--adm-text-muted); margin-top: 4px;"></div>
+        </div>
+      </div>
+
+      <div class="adm-form-group">
+        <label data-i18n="lblInqUpdateStatus">تحديث حالة المتابعة</label>
+        <select id="inqStatusSelect" class="adm-form-control">
+          <option value="new">جديد</option>
+          <option value="contacted">تم التواصل والرد</option>
+          <option value="completed">مكتمل ومؤكد</option>
+        </select>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+        <button class="adm-btn-primary" id="saveInqStatusBtn">
+          <span data-i18n="btnSaveStatus">حفظ الحالة</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Invoice Create Modal -->
+  <div class="adm-modal-backdrop" id="invoiceModal">
+    <div class="adm-modal">
+      <div class="adm-modal-header">
+        <h3 id="invModalTitle" data-i18n="invModalTitle">إنشاء فاتورة تصدير جديدة</h3>
+        <button class="adm-modal-close" id="closeInvoiceModal">&times;</button>
+      </div>
+      <form id="invoiceForm">
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblInvClientName">اسم العميل / المستورد *</label>
+            <input type="text" id="invClientName" class="adm-form-control" required placeholder="اسم المستورد أو الشركة">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblInvCompany">اسم الشركة</label>
+            <input type="text" id="invClientCompany" class="adm-form-control" placeholder="Euro Food Import Ltd">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblInvEmail">البريد الإلكتروني</label>
+            <input type="email" id="invClientEmail" class="adm-form-control" placeholder="import@client.com">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblInvDestination">دولة الوصول والميناء</label>
+            <input type="text" id="invClientCountry" class="adm-form-control" placeholder="إيطاليا - ميناء جنوة">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblInvTotal">إجمالي القيمة *</label>
+            <input type="number" step="0.01" id="invTotalAmount" class="adm-form-control" required placeholder="50000">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblInvCurrency">العملة</label>
+            <select id="invCurrency" class="adm-form-control">
+              <option value="USD">دولار أمريكي</option>
+              <option value="EUR">يورو</option>
+              <option value="EGP">جنيه مصري</option>
+              <option value="SAR">ريال سعودي</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblInvStatus">حالة الفاتورة</label>
+            <select id="invStatus" class="adm-form-control">
+              <option value="pending">قيد الإجراء والتحصيل</option>
+              <option value="paid">مدفوعة ومؤكدة</option>
+              <option value="partially_paid">مدفوعة جزئياً</option>
+              <option value="draft">مسودة</option>
+              <option value="cancelled">ملغاة</option>
+            </select>
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblInvDueDate">تاريخ الاستحقاق</label>
+            <input type="date" id="invDueDate" class="adm-form-control">
+          </div>
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblInvTerms">شروط الدفع والشحن</label>
+          <input type="text" id="invTerms" class="adm-form-control" placeholder="30% Advance, 70% against BL - FOB Alexandria">
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblInvNotes">ملاحظات إضافية</label>
+          <textarea id="invNotes" class="adm-form-control" placeholder="تفاصيل الحاويات والمواصفات..."></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnIssueInvoice">إصدار وحفظ الفاتورة</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. Category Add/Edit Modal -->
+  <div class="adm-modal-backdrop" id="categoryModal">
+    <div class="adm-modal" style="max-width: 520px;">
+      <div class="adm-modal-header">
+        <h3 id="categoryModalTitle" data-i18n="catModalAddTitle">إضافة قسم زراعي جديد</h3>
+        <button class="adm-modal-close" id="closeCategoryModal">&times;</button>
+      </div>
+      <form id="categoryForm">
+        <input type="hidden" id="catId">
+
+        <div class="adm-form-group">
+          <label data-i18n="lblCatNameAr">اسم القسم بالعربية *</label>
+          <input type="text" id="catNameAr" class="adm-form-control" required placeholder="مثال: فواكه طازجة">
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblCatNameEn">اسم القسم بالإنجليزية *</label>
+          <input type="text" id="catNameEn" class="adm-form-control" required placeholder="Fresh Fruits">
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblCatSlug">الاسم التعريفي</label>
+            <input type="text" id="catSlug" class="adm-form-control" placeholder="fresh-fruits">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblCatIcon">الرمز التعبيري</label>
+            <select id="catIcon" class="adm-form-control">
+              <option value="Apple">فواكه طازجة</option>
+              <option value="Carrot">خضروات طازجة</option>
+              <option value="Snowflake">فواكه وخضروات مجمدة</option>
+              <option value="Sprout">محاصيل وحبوب زراعية</option>
+              <option value="Leaf">أعشاب ونباتات عطرية</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="adm-form-group">
+          <label data-i18n="lblCatSortOrder">ترتيب الظهور</label>
+          <input type="number" id="catSortOrder" class="adm-form-control" value="0">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnSaveCategory">حفظ القسم في قاعدة البيانات</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 9. Project Add/Edit Modal (ALMASA Track Record) -->
+  <div class="adm-modal-backdrop" id="projectModal">
+    <div class="adm-modal" style="max-width: 680px;">
+      <div class="adm-modal-header">
+        <h3 id="projectModalTitle" data-i18n="projectModalAddTitle">إضافة مشروع / سابقة أعمال جديدة</h3>
+        <button class="adm-modal-close" id="closeProjectModal">&times;</button>
+      </div>
+      <form id="projectForm">
+        <input type="hidden" id="projId">
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectTitleAr">اسم المشروع بالعربية *</label>
+            <input type="text" id="projTitleAr" class="adm-form-control" required placeholder="مثال: مشروع تطوير مرفق إسعاف القاهرة الرئيسي">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectTitleEn">اسم المشروع بالإنجليزية</label>
+            <input type="text" id="projTitleEn" class="adm-form-control" placeholder="e.g. Cairo Central Ambulance Facility Renovation">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectEntityAr">جهة الإسناد / التعاقد بالعربية *</label>
+            <input type="text" id="projEntityAr" class="adm-form-control" required placeholder="مثال: جهاز مشروعات الخدمة الوطنية - وزارة الصحة">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectEntityEn">جهة الإسناد / التعاقد بالإنجليزية</label>
+            <input type="text" id="projEntityEn" class="adm-form-control" placeholder="e.g. National Service Projects Organization (NSPO)">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectDescAr">تفاصيل ونطاق تنفيذ المشروع بالعربية *</label>
+            <textarea id="projDescAr" class="adm-form-control" rows="3" required placeholder="وصف الأعمال التخصصية والتجهيزات..."></textarea>
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectDescEn">تفاصيل ونطاق تنفيذ المشروع بالإنجليزية</label>
+            <textarea id="projDescEn" class="adm-form-control" rows="3" placeholder="Description of specialized works..."></textarea>
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectImageUrl">مسار أو رابط الصورة / السلايد</label>
+            <input type="text" id="projImageUrl" class="adm-form-control" placeholder="assets/images/projects/tatwer1masa.png">
+          </div>
+          <div class="adm-form-group">
+            <label data-i18n="lblProjectImageUpload">رفع صورة جديدة من جهازك</label>
+            <input type="file" id="projImageFile" class="adm-form-control" accept="image/*">
+          </div>
+        </div>
+
+        <div class="adm-form-group" style="margin-bottom: 16px;">
+          <label data-i18n="lblProjectPreview">معاينة الصورة المحددة:</label>
+          <div style="width:100%; height:130px; background:#040c18; border:1px dashed var(--adm-gold-border); border-radius:8px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+            <img id="projPreviewImg" src="/assets/images/projects/tatwer1masa.png" alt="Preview" style="max-height:100%; max-width:100%; object-fit:contain;">
+          </div>
+        </div>
+
+        <div class="adm-form-row">
+          <div class="adm-form-group">
+            <label data-i18n="lblSortOrder">الترتيب</label>
+            <input type="number" id="projSortOrder" class="adm-form-control" value="0">
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;">
+          <button type="button" class="adm-btn-secondary" id="cancelProjectModal" data-i18n="btnCancel">إلغاء</button>
+          <button type="submit" class="adm-btn-primary">
+            <span data-i18n="btnSaveProject">حفظ المشروع في سابقة الأعمال</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="adm-toast-container" id="admToastContainer"></div>
+
+  <!-- Controller Script -->
+  <script src="admin.js?v=2.7"></script>
+</body>
+</html>

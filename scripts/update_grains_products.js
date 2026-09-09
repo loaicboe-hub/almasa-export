@@ -1,0 +1,912 @@
+const fs = require('fs');
+const path = require('path');
+
+const rootDir = path.join(__dirname, '..');
+
+const newGrainsDataStore = [
+  {
+    id: 53,
+    slug: 'white-pumpkin-seeds',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'لب أبيض مصري ممتاز (بزر قرع عسلي)',
+    name_en: 'Egyptian White Pumpkin Seeds',
+    tag_ar: 'درجة نقاء 99.5% مفروز إلكترونياً',
+    tag_en: 'Sortex Cleaned 99.5% Purity',
+    variety_ar: 'حجم سوبر 11-13 سم، حجم قياسي 9-11 سم، حبات ممتلئة',
+    variety_en: 'Grades: 11-13cm (Super Jumbo), 9-11cm (Standard A)',
+    season_ar: 'أغسطس - مارس (ومتوافر طوال العام)',
+    season_en: 'August - March (Year-Round Availability)',
+    packaging_ar: 'أكياس بولي بروبلين 25 كجم أو أكياس خيش 50 كجم',
+    packaging_en: '25kg / 50kg PP or Jute Bags, Palletized',
+    image_url: 'assets/images/products/white_pumpkin_seeds.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 54,
+    slug: 'super-melon-seeds',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'لب سوبر مصري فاخر (بزر بطيخ إسماعيلية)',
+    name_en: 'Egyptian Super Watermelon Seeds (Lob Super)',
+    tag_ar: 'سوبر جامبو درجة أولى',
+    tag_en: 'Super Jumbo Grade 1',
+    variety_ar: 'سوبر نمرة 1 (8.5 - 9.5 مم)، سوبر نمرة 2 (7.5 - 8.5 مم)',
+    variety_en: 'Size Grade 1 (8.5-9.5mm), Size Grade 2 (7.5-8.5mm)',
+    season_ar: 'يوليو - فبراير (متوافر مدار العام)',
+    season_en: 'July - February (Year-Round Availability)',
+    packaging_ar: 'شكاير بولي بروبلين منسوجة 25 كجم و 50 كجم',
+    packaging_en: '25kg / 50kg Heavy-Duty Woven PP Bags',
+    image_url: 'assets/images/products/super_melon_seeds.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 55,
+    slug: 'sunflower-seeds',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'لب سوري مصري ممتاز (بزر دوار الشمس)',
+    name_en: 'Egyptian Striped Sunflower Seeds',
+    tag_ar: 'حبات طويلة ممتلئة درجة نقاء 99%',
+    tag_en: 'Long Grain & Plump Kernels',
+    variety_ar: 'مخطط طويل 361/3949، أسود بلدي، عيارات 20/64 و 22/64',
+    variety_en: 'Long Striped 361 / 3949, Counts: 20/64, 22/64, 24/64',
+    season_ar: 'أغسطس - مارس (متوافر طوال العام)',
+    season_en: 'August - March (Year-Round Availability)',
+    packaging_ar: 'أكياس ورقية متعددة الطبقات أو شكاير بولي بروبلين 20 و 25 كجم',
+    packaging_en: '20kg / 25kg Multi-Wall Paper or PP Bags',
+    image_url: 'assets/images/products/sunflower_seeds.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 56,
+    slug: 'white-navy-beans',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'فاصوليا بيضاء مصرية جافة درجة أولى (سورتكس)',
+    name_en: 'Egyptian Dry White Navy / Kidney Beans',
+    tag_ar: 'بياض ناصع فرز ليزر 99.5%',
+    tag_en: 'Sortex Cleaned 99.5% Purity',
+    variety_ar: 'فاصوليا نبراس، فاصوليا جيزة 6، مقاسات 180-200 و 200-220 حبة/100جم',
+    variety_en: 'Nebras & Giza 6 Varieties, Counts: 180-200 / 200-220 per 100g',
+    season_ar: 'يونيو - يناير (وحصاد شتوي وصيفي)',
+    season_en: 'June - January (Bi-annual harvest)',
+    packaging_ar: 'أكياس بولي بروبلين 25 كجم و 50 كجم، عبوات 1 كجم و 5 كجم',
+    packaging_en: '25kg / 50kg PP Bags, Retail 1kg / 5kg Bags, 1000kg Big Bags',
+    image_url: 'assets/images/products/white_navy_beans.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 57,
+    slug: 'black-eyed-peas',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'لوبيا مصرية جافة ذات العين السوداء',
+    name_en: 'Egyptian Dry Black-Eyed Peas (Cowpeas)',
+    tag_ar: 'حبة ممتلئة فرز إلكتروني',
+    tag_en: 'Premium Sortex Cleaned',
+    variety_ar: 'لوبيا بلدي عريضة، حبات نمرة 1 متجانسة الحجم',
+    variety_en: 'Grade A Broad Kernels, Calibrated Seed Count',
+    season_ar: 'أغسطس - فبراير',
+    season_en: 'August - February',
+    packaging_ar: 'أكياس بروبلين 25 كجم و 50 كجم، وتعبئة شفافة للمستهلك',
+    packaging_en: '25kg / 50kg PP Bags, Palletized Container Loads',
+    image_url: 'assets/images/products/black_eyed_peas.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 58,
+    slug: 'fava-beans',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'فول مصري بلدي جاف للتدميس والتصدير',
+    name_en: 'Egyptian Dry Fava Beans (Broad Beans)',
+    tag_ar: 'حبة عريضة بلدي فاخرة',
+    tag_en: 'Premium Broad Grade 1',
+    variety_ar: 'فول جيزة 843، فول سخا، فول عريض حبة كبيرة ومتوسطة',
+    variety_en: 'Giza 843, Sakha varieties; Large & Medium Calibers',
+    season_ar: 'أبريل - ديسمبر',
+    season_en: 'April - December',
+    packaging_ar: 'أكياس خيش طبيعي أو بولي بروبلين 25 كجم و 50 كجم',
+    packaging_en: '25kg / 50kg Jute or PP Woven Bags, 1 MT Jumbo Bags',
+    image_url: 'assets/images/products/fava_beans.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 59,
+    slug: 'red-lentils',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'عدس مصري أحمر مجروش وعدس كامل',
+    name_en: 'Red Split & Whole Lentils',
+    tag_ar: 'مغسول وملمع بالزيت النباتي أو طبيعي',
+    tag_en: 'Sortex Cleaned 99.7% Purity',
+    variety_ar: 'عدس أحمر مجروش Split Red، عدس أصفر، عدس بني جبة',
+    variety_en: 'Split Red Lentils, Whole Brown Lentils, Yellow Lentils',
+    season_ar: 'متوافر طوال العام',
+    season_en: 'Available Year-Round',
+    packaging_ar: 'أكياس بولي بروبلين 25 كجم و 50 كجم، عبوات 500 جم و 1 كجم',
+    packaging_en: '25kg / 50kg PP Bags, Retail 500g / 1kg Pouches',
+    image_url: 'assets/images/products/red_lentils.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 60,
+    slug: 'raw-peanuts',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'فول سوداني مصري خام بقشره ومفصص',
+    name_en: 'Egyptian Raw In-Shell & Shelled Peanuts',
+    tag_ar: 'خالي من الأفلاتوكسين Aflatoxin Free',
+    tag_en: 'Certified Aflatoxin-Free Grade 1',
+    variety_ar: 'بقشره عيارات 20/24، 24/28 | مفصص (قلب أحمر) 38/42، 40/50 حبة/أوقية',
+    variety_en: 'In-Shell: 20/24, 24/28 | Shelled Red Skin: 38/42, 40/50 per oz',
+    season_ar: 'أكتوبر - مايو',
+    season_en: 'October - May',
+    packaging_ar: 'شكاير جوت خيش طبيعي 25 كجم و 50 كجم، وشكاير تفريغ هواء',
+    packaging_en: '25kg / 50kg Traditional Jute Bags, Vacuum Bags',
+    image_url: 'assets/images/products/raw_peanuts.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 61,
+    slug: 'caraway-seeds',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'كراوية مصرية حب كاملة ونقية (أعشاب وتوابل)',
+    name_en: 'Egyptian Whole Caraway Seeds',
+    tag_ar: 'نقاء 99% زيت طيار عالي',
+    tag_en: '99% Machine Cleaned / High Essential Oil',
+    variety_ar: 'بذور كراوية بلدية كاملة مفروزة هوائياً وبالليزر',
+    variety_en: 'Natural Whole Caraway Seeds, Sortex Graded',
+    season_ar: 'مايو - نوفمبر (ومتوافرة طوال العام)',
+    season_en: 'May - November (Available Year-Round)',
+    packaging_ar: 'أكياس بولي بروبلين منسوجة 25 كجم أو أكياس ورق كرافت مبطنة',
+    packaging_en: '25kg Multi-Ply Paper Bags or Woven PP Bags',
+    image_url: 'assets/images/products/caraway_seeds.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 62,
+    slug: 'anise-seeds',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'يانسون مصري بلدي طبيعي كامل (حبة حلاوة)',
+    name_en: 'Egyptian Natural Whole Aniseed (Anise Seeds)',
+    tag_ar: 'رائحة نفاذة ونقاء 99% تصدير',
+    tag_en: 'Purity 99% / Extra Green Sortex Cleaned',
+    variety_ar: 'يانسون مصري فاخر، مفروز أوتوماتيكياً وخالي من الأعواد',
+    variety_en: 'Whole Egyptian Aniseeds, Fully Stemless',
+    season_ar: 'يونيو - ديسمبر (ومتوافر طوال العام)',
+    season_en: 'June - December (Year-Round Stock)',
+    packaging_ar: 'أكياس ورق كرافت ثلاثية الطبقات 20 كجم أو شكاير بروبلين 25 كجم',
+    packaging_en: '20kg / 25kg Paper Kraft Bags or Polypropylene Bags',
+    image_url: 'assets/images/products/anise_seeds.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 63,
+    slug: 'sesame-seeds',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'سمسم مصري أبيض ومحمص وذهبي (فرز ليزر)',
+    name_en: 'Egyptian Natural White & Golden Sesame Seeds',
+    tag_ar: 'نقاء 99.9% زيت طبيعي 52%+',
+    tag_en: 'Laser Sorted 99.9% / High Oil Content (52%+)',
+    variety_ar: 'سمسم أبيض ناصع، سمسم أحمر/ذهبي بلدي، سمسم مقشور Hulled',
+    variety_en: 'Natural White, Golden / Red Sesame, Mechanically Hulled',
+    season_ar: 'أكتوبر - إبريل (ومتوافر مدار السنة)',
+    season_en: 'October - April (Year-Round Availability)',
+    packaging_ar: 'أكياس بولي بروبلين 25 كجم و 50 كجم، وعبوات مفرغة الهواء',
+    packaging_en: '25kg / 50kg Multi-Ply Paper or PP Woven Bags',
+    image_url: 'assets/images/products/sesame_seeds.jpg',
+    is_featured: 1,
+    is_active: 1
+  },
+  {
+    id: 64,
+    slug: 'hibiscus-flowers',
+    category_id: 6,
+    trade_type: 'export',
+    name_ar: 'كركديه أسواني فاخر زهور كاملة (ورد كركديه لوز)',
+    name_en: 'Aswan Whole Hibiscus Flowers (Karkadeh)',
+    tag_ar: 'لون ياقوتي داكن وطعم فريد',
+    tag_en: 'Deep Crimson Ruby / 100% Whole Calyces',
+    variety_ar: 'كركديه أسواني لوز (زهور كاملة)، كركديه مقطع TBC',
+    variety_en: 'Whole Aswan Calyces (Grade A), Sifted Cut (TBC)',
+    season_ar: 'نوفمبر - يونيو (متوافر طوال العام)',
+    season_en: 'November - June (Year-Round Availability)',
+    packaging_ar: 'كراتين تصدير 10 كجم و 12 كجم، أو أكياس بولي بروبلين 20 كجم',
+    packaging_en: '10kg / 12kg Export Cartons with PE Liner or 20kg PP Bags',
+    image_url: 'assets/images/products/hibiscus_flowers.jpg',
+    is_featured: 1,
+    is_active: 1
+  }
+];
+
+// Arabic content array
+const arGrainsProducts = [
+  {
+    id: "white-pumpkin-seeds",
+    tradeType: "export",
+    name: "لب أبيض مصري ممتاز (بزر قرع عسلي)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/white_pumpkin_seeds.jpg",
+    badge: "درجة نقاء 99.5% مفروز إلكترونياً",
+    season: "أغسطس - مارس (ومتوافر طوال العام)",
+    origin: "مصر (محافظات الدلتا وكفر الشيخ)",
+    sizes: "حجم سوبر 11-13 سم، حجم قياسي 9-11 سم، حبات ممتلئة",
+    packaging: "أكياس بولي بروبلين 25 كجم، أكياس خيش 50 كجم، تعبئة مفرغة الهواء",
+    temp: "مستودعات جافة ومهواة ومبردة (15-18° مئوية)",
+    specs: "نسبة رطوبة ≤ 8%، خالي تماماً من الشوائب والكسر، مجفف شمسياً ومفروز بفرز ليزري Sortex فائق الدقة.",
+    description: "بذور قرع بيضاء مصرية أصيلة فاخرة ذات حبات عريضة وممتلئة ومقرمشة، مثالية لأسواق التسالي والتحميص والتصنيع الغذائي."
+  },
+  {
+    id: "super-melon-seeds",
+    tradeType: "export",
+    name: "لب سوبر مصري فاخر (بزر بطيخ إسماعيلية)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/super_melon_seeds.jpg",
+    badge: "سوبر جامبو درجة أولى",
+    season: "يوليو - فبراير (متوافر مدار العام)",
+    origin: "مصر (الإسماعيلية والشرقية والبحيرة)",
+    sizes: "سوبر نمرة 1 (8.5 - 9.5 مم)، سوبر نمرة 2 (7.5 - 8.5 مم)",
+    packaging: "شكاير بولي بروبلين منسوجة 25 كجم و 50 كجم مشمعة ومبطنة",
+    temp: "تخزين جاف في عنابر جيدة التهوية",
+    specs: "نقاء 99%، رطوبة ≤ 7.5%، حبات سوداء عريضة ذات حواف واضحة خالية من البقع والكسر ومفروزة آلياً.",
+    description: "بذور البطيخ المصري الشهيرة عالمياً (اللب السوبر الإسماعيلاوي)، لب أسود كبير بلب سمين ومذاق غني مفضل في كافة الأسواق."
+  },
+  {
+    id: "sunflower-seeds",
+    tradeType: "export",
+    name: "لب سوري مصري ممتاز (بزر دوار الشمس)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/sunflower_seeds.jpg",
+    badge: "حبات طويلة ممتلئة درجة نقاء 99%",
+    season: "أغسطس - مارس (متوافر طوال العام)",
+    origin: "مصر (الوجه البحري ومزارع الدلتا)",
+    sizes: "مخطط طويل عيارات 20/64، 22/64، 24/64، أسود بلدي",
+    packaging: "أكياس ورقية متعددة الطبقات أو شكاير بولي بروبلين 20 و 25 كجم",
+    temp: "تخزين جاف بارد ورطوبة منخفضة",
+    specs: "رطوبة ≤ 8.5%، نقاء 99%، منزوع الغبار والشوائب، حبات ثقيلة ممتلئة بنسبة تصافي لب مرتفعة.",
+    description: "بذور عباد الشمس المصرية المحصودة بعناية، حبات طويلة مخططة بالأبيض والأسود، ذات قشرة سهلة التقشير وقلب مقرمش لذيذ للتمليح والتحميص."
+  },
+  {
+    id: "white-navy-beans",
+    tradeType: "export",
+    name: "فاصوليا بيضاء مصرية جافة درجة أولى (سورتكس)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/white_navy_beans.jpg",
+    badge: "بياض ناصع فرز ليزر 99.5%",
+    season: "يونيو - يناير (حصاد شتوي وصيفي)",
+    origin: "مصر (الغربية والبحيرة والدقهلية)",
+    sizes: "فاصوليا نبراس، جيزة 6، مقاسات 180-200 و 200-220 حبة/100جم",
+    packaging: "أكياس بولي بروبلين 25 كجم و 50 كجم، وعبوات 1 كجم و 5 كجم",
+    temp: "تخزين جاف ومعقم ضد الآفات الحشرية",
+    specs: "رطوبة ≤ 13%، شوائب ≤ 0.5%، خالية تماماً من الكسر والتبقع اللوني، سريعة الطهي وقوام متماسك.",
+    description: "فاصوليا بيضاء جافة مصرية عالية الجودة مفروزة بأحدث ماكينات السورتكس البصرية، بلون عاجي ناصع وقوام لا يتفتت عند الطهي."
+  },
+  {
+    id: "black-eyed-peas",
+    tradeType: "export",
+    name: "لوبيا مصرية جافة ذات العين السوداء",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/black_eyed_peas.jpg",
+    badge: "حبة ممتلئة فرز إلكتروني",
+    season: "أغسطس - فبراير",
+    origin: "مصر (محافظات الدلتا ومصر الوسطى)",
+    sizes: "لوبيا بلدي عريضة نمرة 1، حبات متجانسة الحجم",
+    packaging: "أكياس بروبلين 25 كجم و 50 كجم، تعبئة مفرغة وتعبئة تجزئة",
+    temp: "تخزين جاف في مستودعات مهواة",
+    specs: "رطوبة ≤ 12%، نقاء 99%، عين سوداء بارزة ومحددة بدون تصبغات، خالية تماماً من خنافس البقول.",
+    description: "لوبيا جافة مصرية فاخرة بعينها السوداء المميزة، تم تنظيفها وتلميعها وغربلتها آلياً للحصول على أقصى درجات النقاء والطعم اللذيذ."
+  },
+  {
+    id: "fava-beans",
+    tradeType: "export",
+    name: "فول مصري بلدي جاف للتدميس والتصدير",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/fava_beans.jpg",
+    badge: "حبة عريضة بلدي فاخرة",
+    season: "أبريل - ديسمبر",
+    origin: "مصر (كفر الشيخ والبحيرة وبني سويف)",
+    sizes: "فول جيزة 843، سخا، فول عريض حبة كبيرة ومتوسطة",
+    packaging: "أكياس خيش طبيعي أو بولي بروبلين 25 كجم و 50 كجم، أكياس جامبو 1 طن",
+    temp: "تخزين في صوامع ومستودعات جافة مطهرة",
+    specs: "رطوبة ≤ 12.5%، نقاء 99%، قشرة رقيقة ولون فاتح ذهبي، خالي من الثقوب وسهل التسوية.",
+    description: "فول بلدي مصري جاف ذو حبة عريضة وقشرة رقيقة تذوب عند التسوية، مجفف طبيعياً ومفروز بأعلى تقنيات الفرز ليلائم التدميس والمطاعم والتصدير."
+  },
+  {
+    id: "red-lentils",
+    tradeType: "export",
+    name: "عدس مصري أحمر مجروش وعدس كامل",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/red_lentils.jpg",
+    badge: "مغسول وملمع بالزيت النباتي أو طبيعي",
+    season: "متوافر طوال العام",
+    origin: "مصر",
+    sizes: "عدس أحمر مجروش Split Red، عدس أصفر، عدس بني جبة",
+    packaging: "أكياس بولي بروبلين 25 كجم و 50 كجم، وعبوات مستهلك 500 جم و 1 كجم",
+    temp: "تخزين جاف وبارد",
+    specs: "نقاء 99.7% سورتكس، رطوبة ≤ 12%، خالي من الغبار والمواد الدقيقة، حبات مصقولة متجانسة اللون.",
+    description: "عدس أحمر وأصفر مجروش وبني كامل مفروز بالليزر بدقة فائقة، يتميز بلونه البرتقالي الياقوتي الزاهي وسرعة ذوبانه في الأطباق والشوربات."
+  },
+  {
+    id: "raw-peanuts",
+    tradeType: "export",
+    name: "فول سوداني مصري خام بقشره ومفصص",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/raw_peanuts.jpg",
+    badge: "خالي من الأفلاتوكسين Aflatoxin Free",
+    season: "أكتوبر - مايو",
+    origin: "مصر (أراضي الاستصلاح بالنوبارية والإسماعيلية والشرقية)",
+    sizes: "بقشره عيارات 20/24، 24/28 | مفصص (قلب أحمر) عيارات 38/42، 40/50 حبة/أوقية",
+    packaging: "شكاير جوت خيش طبيعي 25 كجم و 50 كجم، وشكاير تفريغ هواء",
+    temp: "تخزين جاف مهوى ومكافح للرطوبة",
+    specs: "رطوبة ≤ 7%، خالي تماماً من سموم الأفلاتوكسين، مفروز يدوياً وآلياً، حبات ثنائية ممتلئة وقشرة فاتحة.",
+    description: "فول سوداني مصري نخب أول مزروع في أراضي رملية نظيفة، ذو قشرة فاتحة مقرمشة وقلب دسم غني بالزيوت الطبيعية مطابق لاشتراطات الاتحاد الأوروبي."
+  },
+  {
+    id: "caraway-seeds",
+    tradeType: "export",
+    name: "كراوية مصرية حب كاملة ونقية (أعشاب وتوابل)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/caraway_seeds.jpg",
+    badge: "نقاء 99% زيت طيار عالي",
+    season: "مايو - نوفمبر (ومتوافرة طوال العام)",
+    origin: "مصر (الفيوم والمنيا وبني سويف)",
+    sizes: "بذور كراوية بلدية كاملة مفروزة هوائياً وبالليزر",
+    packaging: "أكياس بولي بروبلين منسوجة 25 كجم أو أكياس ورق كرافت مبطنة",
+    temp: "تخزين مظلم وجاف للحفاظ على الزيوت الطيارة",
+    specs: "نسبة نقاء 99%، رطوبة ≤ 10%، نسبة زيت طيار ≥ 2.5%، خالية من الأتربة والسيقان وبذور الحشائش.",
+    description: "بذور كراوية مصرية عطرية منتقاة بعناية، ذات رائحة فواحة ومحتوى مرتفع من الزيوت الطيارة، تستخدم في الصناعات الدوائية والغذائية والمخبوزات العالمية."
+  },
+  {
+    id: "anise-seeds",
+    tradeType: "export",
+    name: "يانسون مصري بلدي طبيعي كامل (حبة حلاوة)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/anise_seeds.jpg",
+    badge: "رائحة نفاذة ونقاء 99% تصدير",
+    season: "يونيو - ديسمبر (ومتوافر طوال العام)",
+    origin: "مصر (أسيوط والمنيا وقنا)",
+    sizes: "يانسون مصري فاخر، مفروز أوتوماتيكياً وخالي من الأعواد",
+    packaging: "أكياس ورق كرافت ثلاثية الطبقات 20 كجم أو شكاير بروبلين 25 كجم",
+    temp: "تخزين جاف في بيئة مظلمة وباردة",
+    specs: "نقاء 99%، رطوبة ≤ 9%، زيت عطري أنيثول مرتفع ≥ 2.0%، خالي من المبيدات والشوائب العضوية.",
+    description: "بذور يانسون مصري بلدي مجففة في الظل للحفاظ على لونها الأخضر المميز وزيوتها العطرية الساحرة، مثالية للمشروبات الساخنة والصناعات الطبية."
+  },
+  {
+    id: "sesame-seeds",
+    tradeType: "export",
+    name: "سمسم مصري أبيض ومحمص وذهبي (فرز ليزر)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/sesame_seeds.jpg",
+    badge: "نقاء 99.9% زيت طبيعي 52%+",
+    season: "أكتوبر - إبريل (ومتوافر مدار السنة)",
+    origin: "مصر (سوهاج وأسيوط والدلتا)",
+    sizes: "سمسم أبيض ناصع، سمسم أحمر/ذهبي بلدي، سمسم مقشور Hulled",
+    packaging: "أكياس بولي بروبلين 25 كجم و 50 كجم، وعبوات مفرغة الهواء",
+    temp: "تخزين جاف بارد ومحكم الغلق",
+    specs: "نقاء 99.9% مفرز بالليزر، رطوبة ≤ 6%، نسبة زيت طبيعي ≥ 52%، خالي تماماً من السالمونيلا والشوائب.",
+    description: "سمسم مصري فاخر من أجود مزارع الصعيد والدلتا، ذو حبات ناصعة ونسبة زيت مرتفعة ومذاق بندقي غني، أساسي لصناعة الطحينة والحلاوة الطحينية والمخبوزات."
+  },
+  {
+    id: "hibiscus-flowers",
+    tradeType: "export",
+    name: "كركديه أسواني فاخر زهور كاملة (ورد كركديه لوز)",
+    category: "grains",
+    categoryName: "حبوب ومحاصيل زراعية",
+    image: "assets/images/products/hibiscus_flowers.jpg",
+    badge: "لون ياقوتي داكن وطعم فريد",
+    season: "نوفمبر - يونيو (متوافر طوال العام)",
+    origin: "مصر (أسوان والنوبة والأقصر)",
+    sizes: "كركديه أسواني لوز (زهور كاملة)، كركديه مقطع TBC، بودرة ميكرونية",
+    packaging: "كراتين تصدير 10 كجم و 12 كجم، أو أكياس بولي بروبلين 20 كجم",
+    temp: "تخزين جاف ومظلم للحفاظ على الصبغة الياقوتية",
+    specs: "زهور كاملة سليمة بنسبة 95%+، رطوبة ≤ 10%، لون أحمر قرمزي عميق، خالي تماماً من الغبار والمواد الغريبة.",
+    description: "أشهر كركديه في العالم المحصود من تربة أسوان وشمس النوبة الذهبية، زهور ياقوتية كاملة تعطي خلاصة طبيعية غنية بمضادات الأكسدة ولوناً مبهراً للمشروبات."
+  }
+];
+
+// English content array
+const enGrainsProducts = [
+  {
+    id: "white-pumpkin-seeds",
+    tradeType: "export",
+    name: "Egyptian White Pumpkin Seeds",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/white_pumpkin_seeds.jpg",
+    badge: "Sortex Cleaned 99.5% Purity",
+    season: "August - March (Year-Round Availability)",
+    origin: "Egypt (Nile Delta & Kafr El Sheikh)",
+    sizes: "Grades: 11-13cm (Super Jumbo), 9-11cm (Standard A), Well-Filled",
+    packaging: "25kg / 50kg PP Bags, Jute Bags or Vacuum Pouches on Pallets",
+    temp: "Dry ventilated cold storage (15-18°C)",
+    specs: "Moisture max 8%, Admixture max 0.5%, Laser Sorted, 100% free of dead seeds or foreign material.",
+    description: "Premium natural Egyptian snow-white pumpkin seeds, sun-dried and Sortex-cleaned to perfection with maximum kernel plumpness and savory rich taste."
+  },
+  {
+    id: "super-melon-seeds",
+    tradeType: "export",
+    name: "Egyptian Super Watermelon Seeds (Lob Super)",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/super_melon_seeds.jpg",
+    badge: "Super Jumbo Grade 1",
+    season: "July - February (Year-Round Availability)",
+    origin: "Egypt (Ismailia, Sharkia, Beheira)",
+    sizes: "Size Grade 1 (8.5-9.5mm), Size Grade 2 (7.5-8.5mm)",
+    packaging: "25kg / 50kg Heavy-Duty Woven PP Bags, Palletized",
+    temp: "Dry, well-ventilated warehouse storage",
+    specs: "Purity 99%, Moisture ≤ 7.5%, Sortex-cleaned, perfectly shaped broad black shells with full meaty kernels.",
+    description: "Traditional Egyptian 'Super' watermelon seeds, famous for their distinctively broad dark shell and tender, nutrient-dense kernels."
+  },
+  {
+    id: "sunflower-seeds",
+    tradeType: "export",
+    name: "Egyptian Striped Sunflower Seeds",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/sunflower_seeds.jpg",
+    badge: "Long Grain & Plump Kernels",
+    season: "August - March (Year-Round Availability)",
+    origin: "Egypt (Nile Delta Farms)",
+    sizes: "Long Striped 361 / 3949 type, Counts: 20/64, 22/64, 24/64",
+    packaging: "20kg / 25kg Multi-Wall Paper or PP Bags on Pallets",
+    temp: "Cool, dry ambient storage",
+    specs: "Moisture ≤ 8.5%, Purity ≥ 99%, Light-weight seeds removed, high kernel-to-hull ratio.",
+    description: "Premium Egyptian striped confectionary sunflower seeds, meticulously graded and air-cleaned for roasting, snack packaging, and export markets."
+  },
+  {
+    id: "white-navy-beans",
+    tradeType: "export",
+    name: "Egyptian Dry White Navy / Kidney Beans",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/white_navy_beans.jpg",
+    badge: "Sortex Cleaned 99.5% Purity",
+    season: "June - January (Bi-annual harvest)",
+    origin: "Egypt (Gharbia, Beheira, Dakahlia)",
+    sizes: "Nebras & Giza 6 Varieties, Counts: 180-200 / 200-220 seeds per 100g",
+    packaging: "25kg / 50kg PP Bags, Retail 1kg / 5kg Bags, Big Bags 1000kg",
+    temp: "Dry, fumigated warehouse storage",
+    specs: "Moisture ≤ 13%, Admixture ≤ 0.5%, Zero insect damage, bright white appearance, fast soaking & cooking.",
+    description: "Top-export grade Egyptian dry white beans, optical-laser sorted to ensure immaculate snowy color, uniform caliber, and superior canning/cooking performance."
+  },
+  {
+    id: "black-eyed-peas",
+    tradeType: "export",
+    name: "Egyptian Dry Black-Eyed Peas (Cowpeas)",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/black_eyed_peas.jpg",
+    badge: "Premium Sortex Cleaned",
+    season: "August - February",
+    origin: "Egypt (Delta & Middle Egypt)",
+    sizes: "Grade A Broad Kernels, Calibrated Seed Count",
+    packaging: "25kg / 50kg PP Bags, Palletized container shipments",
+    temp: "Dry and clean ventilated storage",
+    specs: "Moisture ≤ 12%, Purity 99%, distinct bold black eye, machine cleaned & polished, zero weevil damage.",
+    description: "Superior Egyptian black-eyed peas with bright creamy white skin and prominent dark eye, offering high protein content, uniform cooking, and export-grade purity."
+  },
+  {
+    id: "fava-beans",
+    tradeType: "export",
+    name: "Egyptian Dry Fava Beans (Broad Beans)",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/fava_beans.jpg",
+    badge: "Premium Broad Grade 1",
+    season: "April - December",
+    origin: "Egypt (Kafr El Sheikh, Beheira, Beni Suef)",
+    sizes: "Giza 843, Sakha varieties; Large & Medium Calibers",
+    packaging: "25kg / 50kg Jute or PP Woven Bags, 1 MT Jumbo Bags",
+    temp: "Dry, climate-controlled silos and stores",
+    specs: "Moisture ≤ 12.5%, Purity ≥ 99%, Thin skin, bright golden-beige color, free from bruchid holes.",
+    description: "Authentic Egyptian broad dry fava beans, renowned for their tender skins, creamy interior when simmered, and unmatched authentic flavor."
+  },
+  {
+    id: "red-lentils",
+    tradeType: "export",
+    name: "Red Split & Whole Lentils",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/red_lentils.jpg",
+    badge: "Sortex Cleaned 99.7% Purity",
+    season: "Available Year-Round",
+    origin: "Egypt",
+    sizes: "Split Red Lentils, Whole Brown Lentils, Yellow Lentils",
+    packaging: "25kg / 50kg PP Bags, Retail 500g / 1kg Pouches",
+    temp: "Cool and dry storage conditions",
+    specs: "Purity 99.7%, Moisture max 12%, Oil-polished or natural, uniform bright color, zero foreign seeds.",
+    description: "High-purity Egyptian red split and whole lentils, processed through state-of-the-art optical de-hulling and sorting mills for vibrant color and instant velvety texture."
+  },
+  {
+    id: "raw-peanuts",
+    tradeType: "export",
+    name: "Egyptian Raw In-Shell & Shelled Peanuts",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/raw_peanuts.jpg",
+    badge: "Certified Aflatoxin-Free Grade 1",
+    season: "October - May",
+    origin: "Egypt (Nubaria, Ismailia, Sharkia Sandy Lands)",
+    sizes: "In-Shell Counts: 20/24, 24/28 | Kernels (Red Skin): 38/42, 40/50, 50/60 per oz",
+    packaging: "25kg / 50kg Traditional Jute Bags, Vacuum Packed Bags",
+    temp: "Moisture-controlled ventilated dry warehouses",
+    specs: "Moisture ≤ 7%, Aflatoxin compliant (B1+Total EU standards), bright golden mesh shell, plump twin kernels.",
+    description: "Top-tier Egyptian raw peanuts harvested from pristine sandy soils, famous worldwide for low moisture, sweet rich nutty taste, and stringent EU health standard compliance."
+  },
+  {
+    id: "caraway-seeds",
+    tradeType: "export",
+    name: "Egyptian Whole Caraway Seeds",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/caraway_seeds.jpg",
+    badge: "99% Machine Cleaned / High Essential Oil",
+    season: "May - November (Available Year-Round)",
+    origin: "Egypt (Fayoum, Minya, Beni Suef)",
+    sizes: "Natural Whole Caraway Seeds, Sortex Graded",
+    packaging: "25kg Multi-Ply Paper Bags or Woven PP Bags",
+    temp: "Dark, cool and dry herbal warehouse",
+    specs: "Purity 99%, Moisture ≤ 10%, Essential oil ≥ 2.5%, Microbiologically sound, free of stalks & weed seeds.",
+    description: "Aromatic Egyptian caraway seeds characterized by their deep curved seeds and strong warm aroma, widely prized by European bakeries, spirit distilleries, and herbal medicine packers."
+  },
+  {
+    id: "anise-seeds",
+    tradeType: "export",
+    name: "Egyptian Natural Whole Aniseed (Anise Seeds)",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/anise_seeds.jpg",
+    badge: "Purity 99% / Extra Green Sortex Cleaned",
+    season: "June - December (Year-Round Stock)",
+    origin: "Egypt (Assiut, Minya, Qena)",
+    sizes: "Whole Egyptian Aniseeds, Fully Stemless",
+    packaging: "20kg / 25kg Paper Kraft Bags or Polypropylene Bags",
+    temp: "Dark, temperature-controlled dry storage",
+    specs: "Purity 99%, Moisture ≤ 9%, Volatile Oil ≥ 2.0% (rich in anethole), free from stems and foreign flora.",
+    description: "World-renowned Egyptian green anise seeds, harvested in Upper Egypt and gently shade-dried to retain their intense sweet aroma and therapeutic volatile oils."
+  },
+  {
+    id: "sesame-seeds",
+    tradeType: "export",
+    name: "Egyptian Natural White & Golden Sesame Seeds",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/sesame_seeds.jpg",
+    badge: "Laser Sorted 99.9% / High Oil Content (52%+)",
+    season: "October - April (Year-Round Availability)",
+    origin: "Egypt (Sohag, Assiut, Delta)",
+    sizes: "Natural White, Golden / Red Sesame, Mechanically Hulled & Roasted",
+    packaging: "25kg / 50kg Multi-Ply Paper or PP Woven Bags on Pallets",
+    temp: "Dry and hermetically sealed storage",
+    specs: "Purity 99.9% Sortex, Moisture ≤ 6%, Oil content ≥ 52%, Free Fatty Acids < 1.5%, Salmonella negative.",
+    description: "Premium Egyptian sesame seeds, celebrated internationally for their sweet nutty flavor and remarkably high natural oil content, essential for superior tahini, halva, and bakery products."
+  },
+  {
+    id: "hibiscus-flowers",
+    tradeType: "export",
+    name: "Aswan Whole Hibiscus Flowers (Karkadeh)",
+    category: "grains",
+    categoryName: "Crops, Grains & Seeds",
+    image: "assets/images/products/hibiscus_flowers.jpg",
+    badge: "Deep Crimson Ruby / 100% Whole Calyces",
+    season: "November - June (Year-Round Availability)",
+    origin: "Egypt (Aswan, Nubia, Luxor)",
+    sizes: "Whole Aswan Calyces (Grade A), Sifted Cut (TBC), Tea Bag Cut",
+    packaging: "10kg / 12kg Export Cartons with PE Liner or 20kg PP Bags",
+    temp: "Dry, dark room storage to protect deep ruby pigment",
+    specs: "Whole flower content ≥ 95%, Moisture ≤ 10%, Total Ash < 8%, intense ruby red infusion, 100% natural.",
+    description: "World-renowned Egyptian Aswan hibiscus flowers, harvested by hand under Nubian sun, producing an intensely rich ruby-red brew with a refreshing tart flavor prized by beverage manufacturers."
+  }
+];
+
+// French content array
+const frGrainsProducts = [
+  {
+    id: "white-pumpkin-seeds",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Graines de Courge Blanches Égyptiennes",
+    scientificName: "Cucurbita pepo",
+    brief: "Graines de courge blanches naturelles d'Égypte, triées par machine optique Sortex, riches en zinc et minéraux essentiels.",
+    description: "Graines de courge blanches naturelles d'Égypte de qualité supérieure, lavées et séchées au soleil, idéales pour le grillage et l'industrie agroalimentaire.",
+    image: "assets/images/products/white_pumpkin_seeds.jpg",
+    origin: "Égypte (Delta du Nil & Kafr El Sheikh)",
+    season: "Août - Mars (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec / Conteneurs Aérés (15-18°C)",
+    sizes: "Calibres: Super Jumbo 11-13cm, Standard 9-11cm",
+    packaging: "Sacs polypropylène 25 kg / 50 kg ou sacs de jute",
+    specs: "Humidité ≤ 8%, pureté 99.5%, sans corps étrangers, grains entiers et croquants.",
+    badge: "Pureté 99.5% Tri Laser"
+  },
+  {
+    id: "super-melon-seeds",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Graines de Melon Super Égyptiennes",
+    scientificName: "Citrullus lanatus var.",
+    brief: "Graines de pastèque Super égyptiennes très réputées, à coque noire luisante et amande généreuse et savoureuse.",
+    description: "Graines de melon 'Super' traditionnelles d'Ismaïlia, réputées pour leur grande taille et leur goût riche très apprécié au Moyen-Orient et en Europe.",
+    image: "assets/images/products/super_melon_seeds.jpg",
+    origin: "Égypte (Ismaïlia & Sharkia)",
+    season: "Juillet - Février (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Calibres: Grade 1 (8.5-9.5 mm), Grade 2 (7.5-8.5 mm)",
+    packaging: "Sacs tissés PP de 25 kg et 50 kg",
+    specs: "Pureté 99%, humidité ≤ 7.5%, graines noires larges bien remplies et nettoyées.",
+    badge: "Super Jumbo Qualité 1"
+  },
+  {
+    id: "sunflower-seeds",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Graines de Tournesol Rayées d'Égypte",
+    scientificName: "Helianthus annuus",
+    brief: "Graines de tournesol d'Égypte rayées noir et blanc, sélectionnées pour le grillage et la consommation directe.",
+    description: "Graines de tournesol de confiserie cultivées dans le Delta, dépoussiérées et calibrées mécaniquement avec un excellent rendement en amande.",
+    image: "assets/images/products/sunflower_seeds.jpg",
+    origin: "Égypte (Delta du Nil)",
+    season: "Août - Mars (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Rayées longues calibres 20/64, 22/64, 24/64",
+    packaging: "Sacs papier kraft ou polypropylène 20 kg / 25 kg",
+    specs: "Humidité ≤ 8.5%, pureté ≥ 99%, grains calibrés et dépoussiérés.",
+    badge: "Grains Longs & Charnus"
+  },
+  {
+    id: "white-navy-beans",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Haricots Blancs Secs d'Égypte",
+    scientificName: "Phaseolus vulgaris",
+    brief: "Haricots blancs secs égyptiens de première qualité, triés par laser optique, adaptés aux conserveries et grossistes.",
+    description: "Haricots blancs secs d'Égypte calibrés et triés par cellule optique Sortex, offrant une blancheur impeccable et une excellente tenue à la cuisson.",
+    image: "assets/images/products/white_navy_beans.jpg",
+    origin: "Égypte (Gharbia & Beheira)",
+    season: "Juin - Janvier (Double récolte annuelle)",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Variétés Nebras & Giza 6, Calibres: 180-200 / 200-220 grains/100g",
+    packaging: "Sacs PP 25 kg / 50 kg ou Big Bags 1 tonne",
+    specs: "Humidité ≤ 13%, impuretés ≤ 0.5%, blanc éclatant, cuisson homogène sans éclatement.",
+    badge: "Tri Optique Sortex 99.5%"
+  },
+  {
+    id: "black-eyed-peas",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Cornilles Séchées (Doliques à Œil Noir)",
+    scientificName: "Vigna unguiculata",
+    brief: "Cornilles ou haricots à œil noir d'Égypte soigneusement triés et nettoyés, à la texture fondante et saveur douce.",
+    description: "Cornilles séchées égyptiennes de premier choix avec leur œil noir caractéristique bien net, riches en protéines végétales et faciles à cuisiner.",
+    image: "assets/images/products/black_eyed_peas.jpg",
+    origin: "Égypte (Moyenne Égypte & Delta)",
+    season: "Août - Février",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Calibre uniforme Grade A, grains bien calibrés",
+    packaging: "Sacs polypropylène 25 kg / 50 kg sur palettes",
+    specs: "Humidité ≤ 12%, pureté 99%, œil noir net sans décoloration, zéro dommage d'insectes.",
+    badge: "Qualité Extra Triée"
+  },
+  {
+    id: "fava-beans",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Fèves Sèches d'Égypte (Foul)",
+    scientificName: "Vicia faba",
+    brief: "Fèves sèches égyptiennes à peau fine et chair onctueuse, parfaites pour le mijotage traditionnel et les préparations culinaires.",
+    description: "Fèves sèches locales égyptiennes de gros calibre sélectionnées pour leur cuisson fondante et leur goût authentique incomparable.",
+    image: "assets/images/products/fava_beans.jpg",
+    origin: "Égypte (Kafr El Sheikh & Beni Suef)",
+    season: "Avril - Décembre",
+    reeferTemp: "Ambiant Sec / Silos aérés",
+    sizes: "Variétés Giza & Sakha, calibres moyen et grand",
+    packaging: "Sacs de jute 50 kg ou sacs PP 25 kg / 50 kg",
+    specs: "Humidité ≤ 12.5%, pureté ≥ 99%, peau fine, grains sains sans perforation.",
+    badge: "Gros Grains Supérieurs"
+  },
+  {
+    id: "red-lentils",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Lentilles Corail & Brunes d'Égypte",
+    scientificName: "Lens culinaris",
+    brief: "Lentilles corail cassées et lentilles entières de première catégorie, décortiquées pour une cuisson rapide et veloutée.",
+    description: "Lentilles corail décortiquées et lentilles brunes entières égyptiennes, triées optiquement pour une couleur vive et une pureté optimale.",
+    image: "assets/images/products/red_lentils.jpg",
+    origin: "Égypte",
+    season: "Disponible toute l'année",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Lentilles corail cassées (Split Red), lentilles brunes entières",
+    packaging: "Sacs PP 25 kg / 50 kg ou sachets 1 kg",
+    specs: "Pureté 99.7%, humidité max 12%, couleur éclatante sans brisures ni poussière.",
+    badge: "Pureté 99.7% Tri Optique"
+  },
+  {
+    id: "raw-peanuts",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Arachides Brutes d'Égypte (Cacahuètes)",
+    scientificName: "Arachis hypogaea",
+    brief: "Arachides brutes égyptiennes en coque et décortiquées, cultivées en sols sablonneux assurant des coques éclatantes.",
+    description: "Arachides crues égyptiennes récoltées dans les terres désertiques bonifiées, garanties sans aflatoxine et conformes aux normes européennes les plus strictes.",
+    image: "assets/images/products/raw_peanuts.jpg",
+    origin: "Égypte (Noubaria & Ismaïlia)",
+    season: "Octobre - Mai",
+    reeferTemp: "Ambiant Sec Ventilé",
+    sizes: "En coque: 20/24, 24/28 | Décortiquées peau rouge: 38/42, 40/50 grains/oz",
+    packaging: "Sacs de jute aérés 25 kg / 50 kg",
+    specs: "Humidité ≤ 7%, taux d'aflatoxine conforme UE, coques claires et graines généreuses.",
+    badge: "Sans Aflatoxine Certifié"
+  },
+  {
+    id: "caraway-seeds",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Graines de Carvi Entières d'Égypte",
+    scientificName: "Carum carvi",
+    brief: "Graines de carvi d'Égypte à l'arôme chaud et intense, sélectionnées pour la boulangerie et l'extraction d'huiles essentielles.",
+    description: "Graines de carvi entières récoltées dans les oasis et la vallée du Nil, triées par machine optique avec une haute concentration en carvone.",
+    image: "assets/images/products/caraway_seeds.jpg",
+    origin: "Égypte (Fayoum & Minya)",
+    season: "Mai - Novembre (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec / Abri de la lumière",
+    sizes: "Graines entières de carvi égyptien triées par machine optique",
+    packaging: "Sacs papier kraft multicouches 25 kg ou sacs PP",
+    specs: "Pureté 99%, humidité ≤ 10%, teneur en huile essentielle ≥ 2.5%, sans tiges.",
+    badge: "Pureté 99% Huiles Essentielles Élevées"
+  },
+  {
+    id: "anise-seeds",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Graines d'Anis Vert Égyptiennes",
+    scientificName: "Pimpinella anisum",
+    brief: "Anis vert d'Égypte de qualité supérieure, séché à l'ombre pour préserver sa belle teinte verdâtre et son arôme doux.",
+    description: "Graines d'anis vert égyptiennes réputées pour leur saveur anisée prononcée et leurs vertus aromatiques prisées en herboristerie et distillerie.",
+    image: "assets/images/products/anise_seeds.jpg",
+    origin: "Égypte (Assiout & Qena)",
+    season: "Juin - Décembre (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Graines d'anis entières égyptiennes équeutées",
+    packaging: "Sacs kraft multicouches 20 kg / 25 kg",
+    specs: "Pureté 99%, humidité ≤ 9%, huiles volatiles ≥ 2.0%, riche en anéthol.",
+    badge: "Pureté 99% Arôme Anisé Intense"
+  },
+  {
+    id: "sesame-seeds",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Graines de Sésame Blanc & Doré d'Égypte",
+    scientificName: "Sesamum indicum",
+    brief: "Graines de sésame égyptiennes de premier choix, idéales pour le tahini, le halva et la boulangerie fine.",
+    description: "Sésame blanc et doré égyptien à haute teneur en huile naturelle (52%+), soigneusement trié au laser pour éliminer toute impureté.",
+    image: "assets/images/products/sesame_seeds.jpg",
+    origin: "Égypte (Sohag & Haute Égypte)",
+    season: "Octobre - Avril (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec",
+    sizes: "Sésame blanc naturel, doré égyptien, décortiqué (hulled)",
+    packaging: "Sacs papier ou polypropylène 25 kg / 50 kg",
+    specs: "Pureté 99.9%, humidité ≤ 6%, huile ≥ 52%, sans salmonelle.",
+    badge: "Pureté 99.9% Teneur en Huile 52%+"
+  },
+  {
+    id: "hibiscus-flowers",
+    tradeType: "export",
+    category: "grains",
+    categoryName: "Graines & Céréales",
+    name: "Fleurs d'Hibiscus d'Assouan (Karkadé)",
+    scientificName: "Hibiscus sabdariffa",
+    brief: "Fleurs d'hibiscus égyptiennes d'Assouan offrant une infusion pourpre spectaculaire au goût acidulé et désaltérant.",
+    description: "Calices d'hibiscus entiers séchés au soleil de Nubie, célèbres dans le monde entier pour leur rouge rubis éclatant et leur richesse en vitamine C.",
+    image: "assets/images/products/hibiscus_flowers.jpg",
+    origin: "Égypte (Assouan & Louxor)",
+    season: "Novembre - Juin (Disponible toute l'année)",
+    reeferTemp: "Ambiant Sec et Sombre",
+    sizes: "Calices entiers (Grade A), brisures pour infusion (TBC), poudre fine",
+    packaging: "Cartons export 10 kg / 12 kg ou sacs PP 20 kg",
+    specs: "Fleurs entières ≥ 95%, humidité ≤ 10%, infusion rubis profond, 100% naturel.",
+    badge: "Calices Entiers Rouge Rubis Intense"
+  }
+];
+
+// 1. Update database/data_store.json
+const dataStorePath = path.join(rootDir, 'database', 'data_store.json');
+const dataStore = JSON.parse(fs.readFileSync(dataStorePath, 'utf8'));
+dataStore.products = dataStore.products.filter(p => p.id !== 14 && !newGrainsDataStore.some(np => np.id === p.id));
+dataStore.products.push(...newGrainsDataStore);
+fs.writeFileSync(dataStorePath, JSON.stringify(dataStore, null, 2), 'utf8');
+console.log('1. Updated database/data_store.json! Total products:', dataStore.products.length);
+
+// 2. Update server.js mockProducts
+const serverPath = path.join(rootDir, 'server.js');
+let serverContent = fs.readFileSync(serverPath, 'utf8');
+
+const enrichedMockProducts = dataStore.products.map(p => {
+  const cat = dataStore.categories.find(c => c.id === p.category_id);
+  return {
+    ...p,
+    category_slug: cat ? cat.slug : '',
+    category_name_ar: cat ? cat.name_ar : '',
+    category_name_en: cat ? cat.name_en : ''
+  };
+});
+
+const startMockIdx = serverContent.indexOf('let mockProducts = [');
+if (startMockIdx !== -1) {
+  const endMockIdx = serverContent.indexOf('\nlet mockInvoices = [', startMockIdx);
+  if (endMockIdx !== -1) {
+    const before = serverContent.substring(0, startMockIdx);
+    const after = serverContent.substring(endMockIdx);
+    const newMockDeclaration = 'let mockProducts = ' + JSON.stringify(enrichedMockProducts, null, 2) + ';\n';
+    serverContent = before + newMockDeclaration + after;
+    fs.writeFileSync(serverPath, serverContent, 'utf8');
+    console.log('2. Updated server.js mockProducts!');
+  } else {
+    console.error('Could not find mockInvoices boundary in server.js');
+  }
+} else {
+  console.error('Could not find let mockProducts in server.js');
+}
+
+// 3. Update assets/data/content.js
+const contentJsPath = path.join(rootDir, 'assets', 'data', 'content.js');
+const contentJs = fs.readFileSync(contentJsPath, 'utf8');
+
+const jsonStr = contentJs.replace(/^\s*\/\/[^\n]*\n/, '').replace(/^\s*var\s+ALMASA_DATA\s*=\s*/, '').replace(/;\s*$/, '');
+const data = JSON.parse(jsonStr);
+
+// Filter out grains-pulses and add grains products
+data.ar.products = data.ar.products.filter(p => p.id !== 'grains-pulses' && !arGrainsProducts.some(gp => gp.id === p.id));
+data.ar.products.push(...arGrainsProducts);
+
+data.en.products = data.en.products.filter(p => p.id !== 'grains-pulses' && !enGrainsProducts.some(gp => gp.id === p.id));
+data.en.products.push(...enGrainsProducts);
+
+if (data.fr && data.fr.products) {
+  data.fr.products = data.fr.products.filter(p => p.id !== 'grains-pulses' && p.id !== 'dried-herbs' && !frGrainsProducts.some(gp => gp.id === p.id));
+  data.fr.products.push(...frGrainsProducts);
+}
+
+const updatedContentJs = '// Trilingual Data Repository for ALMASA Development & Agro-Export\nvar ALMASA_DATA = ' + JSON.stringify(data, null, 2) + ';\n';
+fs.writeFileSync(contentJsPath, updatedContentJs, 'utf8');
+console.log('3. Updated assets/data/content.js with AR, EN, FR products!');
+console.log('AR products count:', data.ar.products.length);
+console.log('EN products count:', data.en.products.length);
+console.log('FR products count:', data.fr.products.length);

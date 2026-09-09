@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 300" width="100%" height="100%" fill="none" stroke="#d4af37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35">
+  <!-- Architectural Skyline Line-Art Motif -->
+  <!-- Low base line -->
+  <line x1="0" y1="280" x2="1600" y2="280" stroke-width="2" />
+  <line x1="0" y1="284" x2="1600" y2="284" stroke-width="1" opacity="0.6" />
+
+  <!-- Left building cluster -->
+  <path d="M 40,280 L 40,240 L 70,220 L 100,240 L 100,280" />
+  <path d="M 110,280 L 110,190 L 140,160 L 170,190 L 170,280" />
+  <line x1="140" y1="160" x2="140" y2="120" stroke-width="1.5" />
+  
+  <path d="M 180,280 L 180,210 L 220,210 L 220,280" />
+  <path d="M 230,280 L 230,170 L 260,170 L 275,130 L 290,170 L 320,170 L 320,280" />
+  <line x1="275" y1="130" x2="275" y2="90" stroke-width="1.5" />
+
+  <!-- Mid-left modern towers -->
+  <path d="M 330,280 L 330,230 L 370,230 L 370,280" />
+  <path d="M 380,280 L 380,150 L 410,120 L 440,150 L 440,280" />
+  <path d="M 450,280 L 450,180 L 490,180 L 490,280" />
+  <path d="M 500,280 L 500,110 L 530,70 L 560,110 L 560,280" />
+  <line x1="530" y1="70" x2="530" y2="30" stroke-width="1.8" />
+
+  <!-- Center Burj Khalifa / High Spire Icon -->
+  <path d="M 570,280 L 570,200 L 610,200 L 610,280" />
+  <path d="M 620,280 L 620,130 L 650,90 L 680,130 L 680,280" />
+  <path d="M 690,280 L 690,160 L 730,160 L 730,280" />
+
+  <!-- Tower Spire Center -->
+  <path d="M 740,280 L 770,220 L 785,140 L 795,70 L 800,20 L 805,70 L 815,140 L 830,220 L 860,280" stroke-width="1.5" />
+  <line x1="800" y1="20" x2="800" y2="0" stroke-width="2" />
+  <!-- Spire cross tiers -->
+  <line x1="775" y1="210" x2="825" y2="210" />
+  <line x1="785" y1="150" x2="815" y2="150" />
+  <line x1="792" y1="90" x2="808" y2="90" />
+
+  <!-- Burj Al Arab Curved Sail Motif -->
+  <path d="M 870,280 L 870,120 Q 930,150 930,280" stroke-width="1.5" />
+  <line x1="870" y1="120" x2="870" y2="80" stroke-width="1.8" />
+  <line x1="870" y1="160" x2="915" y2="175" />
+  <line x1="870" y1="200" x2="925" y2="215" />
+  <line x1="870" y1="240" x2="928" y2="250" />
+
+  <!-- Mid-right highrises -->
+  <path d="M 940,280 L 940,170 L 970,140 L 1000,170 L 1000,280" />
+  <line x1="970" y1="140" x2="970" y2="100" stroke-width="1.5" />
+
+  <path d="M 1010,280 L 1010,100 L 1040,60 L 1070,100 L 1070,280" stroke-width="1.5" />
+  <line x1="1040" y1="60" x2="1040" y2="20" stroke-width="1.8" />
+
+  <path d="M 1080,280 L 1080,190 L 1120,190 L 1120,280" />
+  <path d="M 1130,280 L 1130,130 L 1160,95 L 1190,130 L 1190,280" />
+  <line x1="1160" y1="95" x2="1160" y2="60" />
+
+  <!-- Right cluster & Islamic arch silhouettes -->
+  <path d="M 1200,280 L 1200,210 L 1240,210 L 1240,280" />
+  <path d="M 1250,280 L 1250,150 Q 1280,120 1310,150 L 1310,280" />
+  <line x1="1280" y1="120" x2="1280" y2="85" stroke-width="1.5" />
+
+  <path d="M 1320,280 L 1320,180 L 1360,180 L 1360,280" />
+  <path d="M 1370,280 L 1370,130 L 1400,90 L 1430,130 L 1430,280" />
+  <line x1="1400" y1="90" x2="1400" y2="50" />
+
+  <path d="M 1440,280 L 1440,210 L 1480,210 L 1480,280" />
+  <path d="M 1490,280 L 1490,240 L 1530,240 L 1530,280" />
+  <path d="M 1540,280 L 1540,250 L 1580,250 L 1580,280" />
+
+  <!-- Subtle grid windows in some buildings -->
+  <rect x="245" y="190" width="8" height="12" />
+  <rect x="260" y="190" width="8" height="12" />
+  <rect x="245" y="215" width="8" height="12" />
+  <rect x="260" y="215" width="8" height="12" />
+  <rect x="245" y="240" width="8" height="12" />
+  <rect x="260" y="240" width="8" height="12" />
+
+  <rect x="515" y="140" width="10" height="14" />
+  <rect x="535" y="140" width="10" height="14" />
+  <rect x="515" y="170" width="10" height="14" />
+  <rect x="535" y="170" width="10" height="14" />
+  <rect x="515" y="200" width="10" height="14" />
+  <rect x="535" y="200" width="10" height="14" />
+  <rect x="515" y="230" width="10" height="14" />
+  <rect x="535" y="230" width="10" height="14" />
+
+  <rect x="1025" y="130" width="10" height="14" />
+  <rect x="1045" y="130" width="10" height="14" />
+  <rect x="1025" y="160" width="10" height="14" />
+  <rect x="1045" y="160" width="10" height="14" />
+  <rect x="1025" y="190" width="10" height="14" />
+  <rect x="1045" y="190" width="10" height="14" />
+  <rect x="1025" y="220" width="10" height="14" />
+  <rect x="1045" y="220" width="10" height="14" />
+</svg>
