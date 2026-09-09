@@ -20,8 +20,12 @@ app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 
 // Ensure upload directory exists
 const uploadDir = path.join(__dirname, 'assets', 'uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+} catch (e) {
+  // Read-only filesystem in serverless environments
 }
 
 // Multer Storage for Image Uploads
