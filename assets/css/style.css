@@ -306,8 +306,8 @@ button, input, select, textarea {
 /* 3D Rotating Diamond Centerpiece */
 .rotating-diamond-wrapper {
   position: relative;
-  width: clamp(336px, 38.4vw, 432px);
-  height: clamp(336px, 38.4vw, 432px);
+  width: clamp(420px, 48vw, 540px);
+  height: clamp(420px, 48vw, 540px);
   cursor: pointer;
   transform-style: preserve-3d;
   z-index: 10;
@@ -513,8 +513,8 @@ button, input, select, textarea {
 }
 
 .logo-img-wrapper {
-  width: clamp(149px, 13.2vw, 210px);
-  height: clamp(149px, 13.2vw, 210px);
+  width: clamp(186px, 16.5vw, 262px);
+  height: clamp(186px, 16.5vw, 262px);
   border-radius: 0;
   padding: 0;
   background: transparent !important;
@@ -530,8 +530,8 @@ button, input, select, textarea {
 }
 
 .site-header.scrolled .logo-img-wrapper {
-  width: clamp(118px, 9.6vw, 156px);
-  height: clamp(118px, 9.6vw, 156px);
+  width: clamp(148px, 12vw, 195px);
+  height: clamp(148px, 12vw, 195px);
 }
 
 .logo-img-wrapper img {
@@ -1318,8 +1318,8 @@ html[dir="ltr"] .nav-dropdown-item:hover {
 }
 
 .section-brand-badge img {
-  width: clamp(192px, 21.6vw, 252px);
-  height: clamp(192px, 21.6vw, 252px);
+  width: clamp(240px, 27vw, 315px);
+  height: clamp(240px, 27vw, 315px);
   object-fit: contain;
   background: transparent !important;
   border: none !important;
@@ -1438,8 +1438,8 @@ html[dir="ltr"] .nav-dropdown-item:hover {
 }
 
 .author-badge-icon {
-  width: 168px;
-  height: 168px;
+  width: 210px;
+  height: 210px;
   border-radius: 0;
   padding: 0;
   background: transparent !important;
@@ -2656,8 +2656,8 @@ html[dir="ltr"] .nav-dropdown-item:hover {
 }
 
 .footer-brand .logo-img-wrapper {
-  width: 312px;
-  height: 312px;
+  width: 390px;
+  height: 390px;
   border-radius: 0;
   padding: 0;
   background: transparent !important;
@@ -2971,9 +2971,9 @@ html[dir="ltr"] .nav-dropdown-item:hover {
 }
 
 .modal-logo-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 10px;
+  width: 68px;
+  height: 68px;
+  border-radius: 12px;
   padding: 2px;
   background: var(--gold-gradient);
   display: flex;
@@ -3218,8 +3218,8 @@ html, body {
     padding: 0.3rem 0.35rem;
   }
   .logo-img-wrapper {
-    width: 132px !important;
-    height: 132px !important;
+    width: 165px !important;
+    height: 165px !important;
   }
   .brand-title {
     font-size: 1.3rem !important;
@@ -3236,7 +3236,7 @@ html, body {
 /* Tablet & Smaller Screens (<= 1120px) */
 @media (max-width: 1120px) {
   :root {
-    --header-height: 92px;
+    --header-height: 96px;
   }
 
   .site-header {
@@ -3263,8 +3263,8 @@ html, body {
   }
 
   .logo-img-wrapper {
-    width: 90px !important;
-    height: 90px !important;
+    width: 112px !important;
+    height: 112px !important;
   }
 
   .brand-title {
@@ -3547,8 +3547,8 @@ html, body {
   }
 
   .logo-img-wrapper {
-    width: 78px !important;
-    height: 78px !important;
+    width: 98px !important;
+    height: 98px !important;
     flex-shrink: 0;
   }
 
@@ -3624,8 +3624,8 @@ html, body {
   }
 
   .rotating-diamond-wrapper {
-    width: 170px;
-    height: 170px;
+    width: 212px;
+    height: 212px;
   }
 
   .brand-intro-title {
@@ -3646,8 +3646,8 @@ html, body {
   }
 
   .section-brand-badge img {
-    width: clamp(144px, 36vw, 192px);
-    height: clamp(144px, 36vw, 192px);
+    width: clamp(180px, 45vw, 240px);
+    height: clamp(180px, 45vw, 240px);
   }
 
   .section-brand-badge span {
@@ -3680,8 +3680,8 @@ html, body {
   }
 
   .author-badge-icon {
-    width: 96px;
-    height: 96px;
+    width: 120px;
+    height: 120px;
   }
 
   .values-grid {
@@ -3967,7 +3967,7 @@ html, body {
   }
 
   .footer-brand .logo-img-wrapper {
-    width: clamp(168px, 48vw, 240px);
+    width: clamp(210px, 60vw, 300px);
     height: auto;
     aspect-ratio: 1/1;
   }
@@ -3998,7 +3998,7 @@ html, body {
 /* Extra Small Mobile (< 480px) */
 @media (max-width: 480px) {
   :root {
-    --header-height: 82px;
+    --header-height: 88px;
   }
 
   .header-container {
@@ -4013,8 +4013,8 @@ html, body {
   }
 
   .logo-img-wrapper {
-    width: 70px !important;
-    height: 70px !important;
+    width: 88px !important;
+    height: 88px !important;
     flex-shrink: 0;
   }
 
