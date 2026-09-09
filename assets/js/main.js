@@ -802,6 +802,10 @@ function renderProducts() {
     btn.onclick = () => {
       AppState.activeSubcategory = btn.dataset.subcategory;
       renderProducts();
+      // Smoothly scroll active button into view on mobile
+      try {
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } catch (e) {}
     };
   });
 

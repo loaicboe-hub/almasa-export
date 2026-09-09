@@ -3674,16 +3674,32 @@ html, body {
     font-size: 1.1rem;
   }
 
-  /* Touch-Scrollable Subfilter Chips */
+  /* Touch-Scrollable Subfilter Chips - Smooth Bidirectional Horizontal Scroll */
   .products-subfilter-bar {
     display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
-    padding: 0.35rem 0.25rem 1rem !important;
-    gap: 0.5rem !important;
+    padding: 0.5rem 1rem 1.25rem !important;
+    gap: 0.55rem !important;
     margin-bottom: 1.75rem !important;
     scrollbar-width: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 1rem;
+  }
+
+  [dir="rtl"] .products-subfilter-bar {
+    justify-content: flex-start !important;
+  }
+
+  [dir="ltr"] .products-subfilter-bar {
+    justify-content: flex-start !important;
   }
 
   .products-subfilter-bar::-webkit-scrollbar {
@@ -3693,9 +3709,10 @@ html, body {
   .subfilter-btn {
     flex-shrink: 0 !important;
     white-space: nowrap !important;
-    font-size: 0.82rem;
-    padding: 0.45rem 0.95rem;
+    font-size: 0.84rem;
+    padding: 0.5rem 1.05rem;
     border-radius: 30px;
+    touch-action: pan-x;
   }
 
   /* Products Grid on Mobile Phones */
