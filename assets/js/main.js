@@ -396,7 +396,7 @@ async function fetchLiveContent() {
 function initLanguage() {
   const langToggleBtn = document.getElementById('langToggleBtn');
   const langWrapper = document.getElementById('langDropdownWrapper');
-  const langOptions = document.querySelectorAll('.lang-option-btn');
+  const langOptions = document.querySelectorAll('.lang-option-btn, .mobile-lang-chip');
 
   // Dropdown open / close toggle
   if (langToggleBtn && langWrapper) {
@@ -425,6 +425,14 @@ function initLanguage() {
         applyLanguage(targetLang);
         langWrapper?.classList.remove('open');
         langToggleBtn?.setAttribute('aria-expanded', 'false');
+        // Close mobile drawer if open
+        const navMenu = document.getElementById('navMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        if (navMenu && navMenu.classList.contains('open')) {
+          navMenu.classList.remove('open');
+          mobileMenuBtn?.classList.remove('active');
+          document.body.style.overflow = '';
+        }
       }
     });
   });
@@ -466,8 +474,8 @@ function applyLanguage(lang) {
     }
   }
 
-  // Update active class on dropdown items
-  document.querySelectorAll('.lang-option-btn').forEach(btn => {
+  // Update active class on dropdown items & mobile chips
+  document.querySelectorAll('.lang-option-btn, .mobile-lang-chip').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
