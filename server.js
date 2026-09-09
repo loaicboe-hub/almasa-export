@@ -3126,12 +3126,18 @@ app.get('/', (req, res) => {
 });
 
 // Launch server & initialize DB
-app.listen(PORT, async () => {
-  console.log(`✨ =======================================================`);
-  console.log(`✨ ALMASA Agro-Export Platform Server Running on Port ${PORT}`);
-  console.log(`🌐 Public Website: http://localhost:${PORT}`);
-  console.log(`💎 Admin Dashboard: http://localhost:${PORT}/admin`);
-  console.log(`✨ =======================================================`);
-  await initDb();
-});
+if (require.main === module) {
+  app.listen(PORT, async () => {
+    console.log(`✨ =======================================================`);
+    console.log(`✨ ALMASA Agro-Export Platform Server Running on Port ${PORT}`);
+    console.log(`🌐 Public Website: http://localhost:${PORT}`);
+    console.log(`💎 Admin Dashboard: http://localhost:${PORT}/admin`);
+    console.log(`✨ =======================================================`);
+    await initDb();
+  });
+} else {
+  initDb().catch(e => console.warn('Init DB:', e.message));
+}
+
+module.exports = app;
 
